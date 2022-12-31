@@ -1,0 +1,30 @@
+.popup {
+    /* box-sizing: border-box; */
+    display: none;
+    /* justify-content: center; */
+    /* justify-content: center; */
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    
+}
+
+.popup_visible {
+    display: flex;
+    justify-content: center;
+}
+
+.popup-form {   
+    /* box-sizing: border-box; */
+    position: fixed;
+    /* top: 195px; */
+    background: rgba(0, 0, 0, 0.5);
+    padding: 195px 100vh 100vh 100vh;
+}
+
+@media screen and (max-width: 581px) {
+    .popup-form {
+        padding: 123px 100vh 100vh 100vh;
+    }
+
+
+}
+

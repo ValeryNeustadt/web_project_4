@@ -9,9 +9,50 @@
     <meta name="description" content="Pructicum Student project">
     <link rel="stylesheet" href="./pages/index.css">
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    
     <title>Around The U.S.</title>
 </head>
 <body class="body">
+    <section class="popup">
+        <div class="popup-form">
+            <form class="form">
+                <button 
+                    class="form__close-button" 
+                    type="button" 
+                    aria-label="close button">                            
+                </button>
+                <h2 class="form__header">Edit profile</h2>
+                <fieldset class="form__fieldset">
+                    <label for="name" class="form__label">
+                    </label>
+                    <input 
+                        type="text" 
+                        class="form__input form__input-name" 
+                        id="name" 
+                        name="name" 
+                        placeholder="Name"
+                        required
+                    >
+                    <label for="profession" class="form__label">
+                    </label>
+                    <input 
+                        type="text" 
+                        class="form__input form__input-aboutme"
+                        id="about-me" 
+                        name="about-me" 
+                        placeholder="About me"
+                        required
+                    >
+                </fieldset>           
+                <button 
+                    type="submit" 
+                    class="form__button"
+                >
+                    Save
+                </button>
+            </form>
+        </div>
+    </section>
     <div class="page">
 
         <header class="header">
@@ -35,9 +76,7 @@
                         <button class="profile__edit-button" type="button" aria-label="edit button">                            
                         </button>
                     </h1>
-                    <p class="profile__profession">
-                        Explorer
-                    </p>
+                    <p class="profile__profession">Explorer</p>
                 </div>
                 <button class="profile__add-button" type="button" aria-label="add button">
                 </button>
@@ -113,11 +152,13 @@
                 </div>
             </section>
         </main>
-
         <footer class="footer">
             <p class="footer__copyright">© 2022 Around The U.S.</p>
         </footer>
-
     </div>
+
+
+
+    <script src="./scripts/code.js"></script>    
 </body>
 </html>

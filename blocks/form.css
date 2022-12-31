@@ -1,0 +1,133 @@
+.form {
+    position: relative;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    justify-self:center;
+    flex-direction: column;
+    justify-content:space-between;
+    padding: 34px 36px 36px 36px;
+    margin: 0;
+    width: 430px;
+    height: 330px;
+}
+.form__close-button {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background: none;
+    background-image: url(../images/add-icon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40px 40px;
+    transform: rotate(45deg);
+    font-size: 0;
+    margin: 0;
+    cursor: pointer;
+    padding: 0;
+}
+
+.form__close-button:hover {
+    opacity: 60%;
+}
+
+.form__header {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    margin: 0;
+}
+
+.form__fieldset {
+    display: flex;
+    flex-direction: column;
+    border: 0;
+    /* padding: 54px 0 48px 0; */
+    padding: 0;
+    margin: 0;
+}
+
+.form__input {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    width: 358px;
+    height: 27.26px;
+    margin: 0;
+    padding: 0;
+}
+
+.form__input:nth-last-child(1) {
+    margin-top: 30px;
+}
+
+.form__button {
+    align-self: center;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    border-radius: 2px;
+    border: 0;
+    background-color: #000;
+    color: #fff;
+    width: 358px;
+    height: 50.15px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;  
+}
+
+.form__button:hover {
+    opacity: 80%;
+}
+
+@media screen and (max-width: 581px) {
+    .form {
+        padding: 25px 22px 25px 22px;
+        width: 282px;
+        height: 322px;
+    }
+    
+    .form__close-button {
+        top: -30px;
+        right: -3px;
+        width: 26px;
+        height: 26px;
+        background-size: 26px 26px;
+
+    }
+
+    .form__input {
+        width: 238px;
+
+    }
+
+    .form__button {
+        width: 238px;
+    }
+
+    .form__header {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .form__button {
+        font-size: 14px;
+        line-height: 17px;        
+    }
+
+
+}
