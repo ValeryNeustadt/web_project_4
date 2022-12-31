@@ -28,5 +28,5 @@ The popup opened once the user clicks on the "Edit" button, and be closed upon c
 
 
 
-Link to the website [here](https://valeryneustadt.github.io/se_project_aroundtheus/)
+Link to the website [here](https://valeryneustadt.github.io/web_project_4/)
 Screenshot of the website [here](https://disk.yandex.ru/d/p2hLYO5TPdmk-g) )
