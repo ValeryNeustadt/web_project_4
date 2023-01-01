@@ -1,6 +1,7 @@
 .popup {
     /* box-sizing: border-box; */
     display: none;
+    justify-content: center;
     /* justify-content: center; */
     /* justify-content: center; */
     /* background-color: rgba(0, 0, 0, 0.5); */
@@ -9,7 +10,6 @@
 
 .popup_visible {
     display: flex;
-    justify-content: center;
 }
 
 .popup-form {   
