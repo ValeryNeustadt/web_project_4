@@ -24,7 +24,7 @@
 
 .profile__name-title {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     gap: 18px;
     margin: 0;
 }
@@ -130,6 +130,7 @@
 
     .profile__info {
         justify-self: center;
+        width: 282px;
         gap: 14px;
         padding: 30px 0 36px 0;
     }
@@ -137,7 +138,7 @@
     .profile__name {
         font-size: 22px;
         line-height: 26.63px;
-        max-width: 282px;
+        max-width: 246px;
     }
 
     .profile__profession {
@@ -151,5 +152,6 @@
     .profile__edit-button {
         width: 18px;
         height: 18px;
+        background-size: 8px 8px;
     }
 }
