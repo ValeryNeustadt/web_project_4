@@ -1,22 +1,5 @@
 # Project 4: Around The U.S.
 
-### Overview
-
-* Figma
-* Images
-
-**Figma**
-
-* [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
-
-**Images**
-
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-
-Have fun with JavaScript!
-
-# Project 4: Around The U.S.
-
 ### Overview  
 
 * Intro  
@@ -45,5 +28,5 @@ The popup opened once the user clicks on the "Edit" button, and be closed upon c
 
 
 
-Link to the website [here](https://valeryneustadt.github.io/se_project_aroundtheus/)
+Link to the website [here](https://valeryneustadt.github.io/web_project_4/)
 Screenshot of the website [here](https://disk.yandex.ru/d/p2hLYO5TPdmk-g) )
