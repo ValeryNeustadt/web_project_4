@@ -14,7 +14,7 @@
     display: grid;
 }
 
-.popup_window {   
+.popup__window {   
     box-sizing: border-box;
     grid-column: 1 / 2;
     grid-row: 2 / 2;
@@ -58,7 +58,7 @@
     padding: 34px 36px 0px 36px;
 }
 
-.popup_form {
+.popup__form {
     padding: 0 36px 36px 36px;
     margin: 0;
 }
@@ -71,7 +71,7 @@
         grid-column: 1 / 1;
         grid-row: 2 / 2;
     }
-    .popup_window {
+    .popup__window {
         max-width: 282px;
     }
 
@@ -90,7 +90,7 @@
         padding: 25px 22px 0 22px;
     }
 
-    .popup_form {
+    .popup__form {
         padding: 0 22px 25px 22px;
     }
 }
