@@ -1,30 +1,96 @@
 .popup {
-    /* box-sizing: border-box; */
     display: none;
-    /* justify-content: center; */
-    /* justify-content: center; */
-    /* background-color: rgba(0, 0, 0, 0.5); */
-    
+    grid-template-columns: 1fr, 1fr;
+    grid-template-rows: 1fr, 1fr;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 100vh;
+    background: rgba(0, 0, 0, 0.5);   
 }
 
 .popup_visible {
-    display: flex;
-    justify-content: center;
+    display: grid;
 }
 
-.popup_form {   
-    /* box-sizing: border-box; */
-    position: fixed;
-    /* top: 195px; */
-    background: rgba(0, 0, 0, 0.5);
-    padding: 195px 100vh 100vh 100vh;
+.popup_window {   
+    box-sizing: border-box;
+    grid-column: 1 / 2;
+    grid-row: 2 / 2;
+    border-radius: 10px;
+    max-width: 430px;
+    background-color: rgba(255, 255, 255, 1);
+    width: 430px;
+
+}
+
+.popup__close-button {
+    grid-column: 2 / 2;
+    grid-row: 1 / 2;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background: none;
+    background-image: url(../images/add-icon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40px 40px;
+    transform: rotate(45deg);
+    font-size: 0;
+    margin: 0;
+    cursor: pointer;
+    padding: 0;
+}
+
+.popup__close-button:hover {
+    opacity: 60%;
+}
+
+.popup__header {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    margin: 0;
+    padding: 34px 36px 0px 36px;
+}
+
+.popup_form {
+    padding: 0 36px 36px 36px;
+    margin: 0;
 }
 
 @media screen and (max-width: 581px) {
-    .popup-form {
-        padding: 123px 100vh 100vh 100vh;
+
+    .popup {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr, 1fr;
+        grid-column: 1 / 1;
+        grid-row: 2 / 2;
+    }
+    .popup_window {
+        max-width: 282px;
     }
 
+    .popup__close-button {
+        justify-self: end;
+        grid-column: 1 / 1;
+        grid-row: 1 / 2;
+        width: 26px;
+        height: 26px;
+        background-size: 26px 26px;
+    }
 
+    .popup__header {
+        font-size: 18px;
+        line-height: 22px;
+        padding: 25px 22px 0 22px;
+    }
+
+    .popup_form {
+        padding: 0 22px 25px 22px;
+    }
 }
-

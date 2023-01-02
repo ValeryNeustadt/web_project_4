@@ -14,43 +14,47 @@
 </head>
 <body class="body">
     <section class="popup">
-        <div class="popup_form">
-            <form class="form">
-                <button 
-                    class="form__close-button" 
-                    type="button" 
-                    aria-label="close button">                            
-                </button>
-                <h2 class="form__header">Edit profile</h2>
-                <fieldset class="form__fieldset">
-                    <label for="name" class="form__label">
-                    </label>
-                    <input 
-                        type="text" 
-                        class="form__input form__input-name" 
-                        id="name" 
-                        name="name" 
-                        placeholder="Name"
-                        required
-                    >
-                    <label for="profession" class="form__label">
-                    </label>
-                    <input 
-                        type="text" 
-                        class="form__input form__input-aboutme"
-                        id="about-me" 
-                        name="about-me" 
-                        placeholder="About me"
-                        required
-                    >
-                </fieldset>           
-                <button 
-                    type="submit" 
-                    class="form__button"
+        <button 
+            class="popup__close-button" 
+            type="button" 
+            aria-label="close button">
+        </button>
+        <div class="popup_window">
+                <h2 class="popup__header">Edit profile</h2>
+                <form 
+                    action="submit"
+                    class="form popup_form"
+                    name="profileForm"
                 >
-                    Save
-                </button>
-            </form>
+                    <fieldset class="form__fieldset">
+                        <input 
+                            type="text" 
+                            class="form__input" 
+                            id="name" 
+                            name="name" 
+                            placeholder="Name"
+                            required
+                        >
+
+                        <input 
+                            type="text" 
+                            class="form__input"
+                            id="about-me" 
+                            name="about-me" 
+                            placeholder="About me"
+                            required
+                        >
+                    </fieldset>
+
+                    <button 
+                        type="submit" 
+                        class="form__button"
+                    >
+                        Save
+                    </button>
+                </form>
+
+            </div>
         </div>
     </section>
     <div class="page">
@@ -64,7 +68,7 @@
         </header>
     
         <main class="content">
-            <section class="profile">                
+            <section class="profile">
                 <img
                     src="./images/jacques-cousteau-avatar.png"
                     alt="Photo of Jacques Cousteau"
@@ -73,7 +77,7 @@
                 <div class="profile__info">
                     <h1 class="profile__name-title">
                         <span class="profile__name">Jacques Cousteau</span>
-                        <button class="profile__edit-button" type="button" aria-label="edit button">                            
+                        <button class="profile__edit-button" type="button" aria-label="edit button">
                         </button>
                     </h1>
                     <p class="profile__profession">Explorer</p>
@@ -92,7 +96,7 @@
                         <div class="element__header">
                             <h2 class="element__text">Yosemite Valley</h2>
                             <button class="element__button-like" type="button" aria-label="like button"></button>
-                        </div>                    
+                        </div>
                     </div>
                     <div class="element">
                         <img
@@ -103,7 +107,7 @@
                         <div class="element__header">
                             <h2 class="element__text">Lake Louise</h2>
                             <button class="element__button-like" type="button" aria-label="like button"></button>
-                        </div>                    
+                        </div>
                     </div>
                     <div class="element">
                         <img
