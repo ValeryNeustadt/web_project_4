@@ -13,12 +13,13 @@
     <title>Around The U.S.</title>
 </head>
 <body class="body">
-
     <section class="image">
   
     </section>
 
-    <section class="popup">
+    <section 
+    class="popup"
+    >
         <button 
             class="popup__close-button" 
             type="button" 
@@ -26,9 +27,13 @@
         </button>
 
     </section>
-    <div class="page">
+    <div 
+        class="page"
+    >
 
-        <header class="header">
+        <header 
+            class="header"
+        >
             <img
                 src="./images/Logo.svg"
                 alt="Around The U.S. Logo"
@@ -36,8 +41,12 @@
             >
         </header>
     
-        <main class="content">
-            <section class="profile">
+        <main 
+            class="content"
+        >
+            <section 
+                class="profile"
+            >
                 <img
                     src="./images/jacques-cousteau-avatar.png"
                     alt="Photo of Jacques Cousteau"
@@ -45,32 +54,56 @@
                 >                
                 <div class="profile__info">
                     <h1 class="profile__name-title">
-                        <span class="profile__name">Jacques Cousteau</span>
-                        <button class="profile__edit-button" type="button" aria-label="edit button">
+                        <span 
+                            class="profile__name"
+                        >Jacques Cousteau</span>
+                        <button 
+                            class="profile__edit-button" 
+                            type="button" 
+                            aria-label="edit button"
+                        >
                         </button>
                     </h1>
-                    <p class="profile__profession">Explorer</p>
+                    <p 
+                        class="profile__profession"
+                    >Explorer</p>
                 </div>
-                <button class="profile__add-button" type="button" aria-label="add button">
+                <button 
+                    class="profile__add-button" 
+                    type="button" 
+                    aria-label="add button"
+                >
                 </button>
             </section>
-            <section class="gallery">
-                <div class="gallery__elements">
-                    
+            <section 
+                class="gallery"
+            >
+                <div 
+                    class="gallery__elements"
+                >                    
                 </div>
             </section>
         </main>
-        <footer class="footer">
-            <p class="footer__copyright">© 2022 Around The U.S.</p>
+        <footer 
+            class="footer"
+        >
+            <p 
+            class="footer__copyright"
+            >© 2022 Around The U.S.</p>
         </footer>
     </div>
 <template id="popup__template">
-    <div class="popup__window">
-        <h2 class="popup__header"></h2>
+    <div 
+        class="popup__window"
+    >
+        <h2 
+            class="popup__header"
+        >
+        </h2>
         <form 
             action="submit"
             class="form popup__form"
-            name=""
+            name="id"
         >
             <fieldset class="form__fieldset">
                
@@ -78,37 +111,38 @@
             <button 
                 type="submit" 
                 class="form__button"
-            >
-                Save
-            </button>
+            >Save</button>
         </form>   
     </div>                    
 </template>
 
 <template id="gallery">
 
-    <div class="element" id="">
+    <div 
+        class="element" 
+        id="id"
+    >
         <button 
-            id=" "
+            id="id"
             class="element__trash" 
             type="button" 
             aria-label="trash button" 
-            name=" ">
+            name="name">
         </button>
         <img
-            id=" "
-            src=" "
-            alt=" "
+            id="id"
+            src="scr"
+            alt="alt"
             class="element__photo"
         >
         <div class="element__header">
             <h2 
-                id=" "
+                id="id"
                 class="element__text"
                 >
             </h2>
             <button
-                id=" " 
+                id="id" 
                 class="element__button-like" 
                 type="button"
                 aria-label="like button">
@@ -119,24 +153,22 @@
 </template>
 
 <template id="image">
-    <div class="image__popup" id="">
-        
+    <div class="image__popup" id="">        
         <button 
-        id=" "   
-        class="image__close-button" 
-        type="button" 
-        aria-label="close button">
-    </button>
-
+            id="id"   
+            class="image__close-button" 
+            type="button" 
+            aria-label="close button">
+        </button>
         <img
-            id=" "           
-            src=" " 
-            alt=" " 
+            id="id"           
+            src="src" 
+            alt="alt" 
             class="image__content"
         >
 
         <h2
-            id=" "
+            id="id"
             class="image__header"
         >
         </h2>
