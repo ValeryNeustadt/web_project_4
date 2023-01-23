@@ -13,49 +13,18 @@
     <title>Around The U.S.</title>
 </head>
 <body class="body">
+
+    <section class="image">
+  
+    </section>
+
     <section class="popup">
         <button 
             class="popup__close-button" 
             type="button" 
             aria-label="close button">
         </button>
-        <div class="popup__window">
-                <h2 class="popup__header">Edit profile</h2>
-                <form 
-                    action="submit"
-                    class="form popup__form"
-                    name="profileForm"
-                >
-                    <fieldset class="form__fieldset">
-                        <!-- <input 
-                            type="text" 
-                            class="form__input" 
-                            id="name" 
-                            name="name" 
-                            placeholder="Name"
-                            required
-                        >
 
-                        <input 
-                            type="text" 
-                            class="form__input"
-                            id="about-me" 
-                            name="about-me" 
-                            placeholder="About me"
-                            required
-                        > -->
-                    </fieldset>
-
-                    <button 
-                        type="submit" 
-                        class="form__button"
-                    >
-                        Save
-                    </button>
-                </form>
-
-            </div>
-        </div>
     </section>
     <div class="page">
 
@@ -87,72 +56,7 @@
             </section>
             <section class="gallery">
                 <div class="gallery__elements">
-                    <div class="element">
-                        <img
-                            src="./images/yosemite-valley.png"
-                            alt="Photo of Yosemite Valletey"
-                            class="element__photo"
-                        >
-                        <div class="element__header">
-                            <h2 class="element__text">Yosemite Valley</h2>
-                            <button class="element__button-like" type="button" aria-label="like button"></button>
-                        </div>
-                    </div>
-                    <div class="element">
-                        <img
-                            src="./images//lake-louise.png"
-                            alt="Photo of Yosemite Valletey"
-                            class="element__photo"
-                        >
-                        <div class="element__header">
-                            <h2 class="element__text">Lake Louise</h2>
-                            <button class="element__button-like" type="button" aria-label="like button"></button>
-                        </div>
-                    </div>
-                    <div class="element">
-                        <img
-                            src="./images/bald-mountains.png"
-                            alt="Photo of Yosemite Valletey"
-                            class="element__photo"
-                        >
-                        <div class="element__header">
-                            <h2 class="element__text">Bald Mountains</h2>
-                            <button class="element__button-like" type="button" aria-label="like button"></button>
-                        </div>
-                    </div>
-                    <div class="element">
-                        <img
-                            src="./images/latemar.png"
-                            alt="Photo of Yosemite Valletey"
-                            class="element__photo"
-                        >
-                        <div class="element__header">
-                            <h2 class="element__text">Latemar</h2>
-                            <button class="element__button-like" type="button" aria-label="like button"></button>
-                        </div>
-                    </div>
-                    <div class="element">
-                        <img
-                            src="./images/vanoise-national-park.png"
-                            alt="Photo of Yosemite Valletey"
-                            class="element__photo"
-                        >
-                        <div class="element__header">
-                            <h2 class="element__text">Vanoise National Park </h2>
-                            <button class="element__button-like" type="button" aria-label="like button"></button>
-                        </div>
-                    </div>
-                    <div class="element">
-                        <img
-                            src="./images/lago-di-braies.png"
-                            alt="Photo of Yosemite Valletey"
-                            class="element__photo"
-                        >
-                        <div class="element__header">
-                            <h2 class="element__text">Lago di Braies</h2>
-                            <button class="element__button-like" type="button" aria-label="like button"></button>
-                        </div>
-                    </div>
+                    
                 </div>
             </section>
         </main>
@@ -161,29 +65,82 @@
         </footer>
     </div>
 <template id="popup__template">
-
-                        <input 
-                            type="" 
-                            class="form__input" 
-                            id="" 
-                            name="" 
-                            placeholder=""
-                            required
-                        >
-                        
+    <div class="popup__window">
+        <h2 class="popup__header"></h2>
+        <form 
+            action="submit"
+            class="form popup__form"
+            name=""
+        >
+            <fieldset class="form__fieldset">
+               
+            </fieldset>
+            <button 
+                type="submit" 
+                class="form__button"
+            >
+                Save
+            </button>
+        </form>   
+    </div>                    
 </template>
 
-<template id="popup__gallery">
+<template id="gallery">
 
-    <input 
-        type="" 
-        class="form__input" 
-        id="" 
-        name="" 
-        placeholder=""
-        required
-    >
+    <div class="element" id="">
+        <button 
+            id=""
+            class="element__trash" 
+            type="button" 
+            aria-label="trash button" 
+            name="">
+        </button>
+        <img
+            id=""
+            src=""
+            alt=""
+            class="element__photo"
+        >
+        <div class="element__header">
+            <h2 
+                id=""
+                class="element__text"
+                >
+            </h2>
+            <button
+                id="" 
+                class="element__button-like" 
+                type="button"
+                aria-label="like button">
+            </button>
+        </div>
+    </div>
     
+</template>
+
+<template id="image">
+    <div class="image__popup" id="">
+        
+        <button 
+        id=""   
+        class="image__close-button" 
+        type="button" 
+        aria-label="close button">
+    </button>
+
+        <img
+            id=""           
+            src="" 
+            alt="" 
+            class="image__content"
+        >
+
+        <h2
+            id=""
+            class="image__header"
+        >
+        </h2>
+    </div>
 </template>
 
     <script src="./scripts/code.js"></script>    

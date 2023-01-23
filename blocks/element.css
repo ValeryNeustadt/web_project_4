@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    position: relative;
     margin: 0;
     background-color: #FFFFFF;
     border-radius: 10px;
@@ -12,6 +13,12 @@
     width: 282px;
     height: 282px;
     margin: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.element__photo:hover{
+    opacity: 50%;
 }
 
 .element__header {
@@ -48,6 +55,31 @@
     cursor: pointer;
 }
 
+.element__button-like_active {
+    background-image: url(../images/like-icon-active.svg);
+}
+
+.element__trash {
+    position: absolute;
+    right: 15px;
+    top: 18px;
+    width: 18px;
+    height: 19px;
+    margin: 0;
+    border: 0;
+    background: none;
+    background-image: url(../images/Trash.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px 19px;
+    cursor: pointer;
+    z-index: 1;
+}
+
 .element__button-like:hover {
     opacity: 50%;
+}
+
+.element__trash:hover {
+    opacity: 60%;
 }
