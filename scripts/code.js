@@ -211,8 +211,9 @@ function addGalleryElementContent () {
   creatingNewCard (cardArray);  
 }
 
+
 function creatingImagePopup(inputFistField, inputSecondField) {
-  let imagePhotoClass = document.querySelector(".image__content");
+  let imagePhotoClass = document.querySelector(".popup__image-content");
   imagePhotoClass.setAttribute("src", `${inputSecondField}`);
   let imageHeaderClass = document.querySelector("#imagepreview__header");
   imageHeaderClass.textContent = inputFistField.replaceAll("photo_", "").replaceAll("_", " ");
