@@ -13,23 +13,115 @@
     <title>Around The U.S.</title>
 </head>
 <body class="body">
-    <section class="image">
-  
+
+    <section class="popups">
+        <div class="popup" id="profileform">
+            <button
+                id="profileform__close-button"
+                class="popup__close-button" 
+                type="button" 
+                aria-label="close button">
+            </button>
+            <div class="popup__window">
+                    <h2 class="popup__header">Edit profile</h2>
+                    <form 
+                        action="submit"
+                        class="form popup__form"
+                        name="profileForm"
+                    >
+                        <fieldset class="form__fieldset">
+                            <input 
+                                type="text" 
+                                class="form__input" 
+                                id="profileform__name" 
+                                name="name" 
+                                placeholder="Name"
+                                required
+                            >
+
+                            <input 
+                                type="text" 
+                                class="form__input"
+                                id="profileform__about-me" 
+                                name="about-me" 
+                                placeholder="About me"
+                                required
+                            >
+                        </fieldset>
+
+                        <button
+                            id="profileform__submit-button"
+                            type="submit" 
+                            class="form__button"
+                        >
+                            Save
+                        </button>
+                    </form>
+            </div>
+        </div>
+        <div class="popup" id="addplaceform">
+            <button
+                id="addplaceform__close-button"
+                class="popup__close-button" 
+                type="button" 
+                aria-label="close button">
+            </button>
+            <div class="popup__window">
+                    <h2 class="popup__header">New place</h2>
+                    <form 
+                        action="submit"
+                        class="form popup__form"
+                        name="profileForm"
+                    >
+                        <fieldset class="form__fieldset">
+                            <input 
+                                type="text" 
+                                class="form__input" 
+                                id="addplaceform__title" 
+                                name="title" 
+                                placeholder="Title"
+                                required
+                            >
+
+                            <input 
+                                type="url" 
+                                class="form__input"
+                                id="addplaceform__image-link" 
+                                name="image-link" 
+                                placeholder="Image link"
+                                required
+                            >
+                        </fieldset>
+
+                        <button
+                            id="addplaceform__submit-button"
+                            type="submit" 
+                            class="form__button"
+                        >
+                            Save
+                        </button>
+                    </form>
+            </div>
+        </div>
+        <div class="popup" id="imagepreview">
+            <button
+                id="imagepreview__close-button"
+                class="popup__close-button" 
+                type="button" 
+                aria-label="close button">
+            </button>
+            <img 
+                id="imagepreview"
+                src="https://code.s3.yandex.net/web-code/yosemite.jpg" 
+                alt="Photo Preview" 
+                class="image__content"
+            >
+            <h2 id="imagepreview__header" class="image__header">New place</h2>
+        </div>
+    
     </section>
 
-    <section 
-    class="popup"
-    >
-        <button 
-            class="popup__close-button" 
-            type="button" 
-            aria-label="close button">
-        </button>
-
-    </section>
-    <div 
-        class="page"
-    >
+    <div class="page">
 
         <header 
             class="header"
@@ -80,7 +172,8 @@
             >
                 <div 
                     class="gallery__elements"
-                >                    
+                >  
+
                 </div>
             </section>
         </main>
@@ -92,30 +185,6 @@
             >© 2022 Around The U.S.</p>
         </footer>
     </div>
-<template id="popup__template">
-    <div 
-        class="popup__window"
-    >
-        <h2 
-            class="popup__header"
-        >
-        </h2>
-        <form 
-            action="submit"
-            class="form popup__form"
-            name="id"
-        >
-            <fieldset class="form__fieldset">
-               
-            </fieldset>
-            <button 
-                type="submit" 
-                class="form__button"
-            >Save</button>
-        </form>   
-    </div>                    
-</template>
-
 <template id="gallery">
 
     <div 
@@ -152,29 +221,7 @@
     
 </template>
 
-<template id="image">
-    <div class="image__popup" id="id_image__popup">        
-        <button 
-            id="id_close-button"   
-            class="image__close-button" 
-            type="button" 
-            aria-label="close button">
-        </button>
-        <img
-            id="id_image__content"           
-            src="url" 
-            alt="alt_image__content" 
-            class="image__content"
-        >
+<script src="./scripts/code.js"></script>
 
-        <h2
-            id="id_mage__header"
-            class="image__header"
-        >
-        </h2>
-    </div>
-</template>
-
-    <script src="./scripts/code.js"></script>    
 </body>
 </html>

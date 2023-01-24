@@ -1,61 +1,34 @@
-let editButton = document.querySelector(".profile__edit-button");
-let addButton = document.querySelector(".profile__add-button");
-let popup = document.querySelector('.popup');
-let closeButton = document.querySelector(".popup__close-button");
+const profileForm = document.querySelector("#profileform");
+let inputName = document.querySelector("#profileform__name");
+let inputAboutme = document.querySelector("#profileform__about-me");
+
+const addPlaceForm = document.querySelector("#addplaceform");
+let addPlaceFormTitle = document.querySelector("#addplaceform__title");
+let addPlaceFormImageLink = document.querySelector("#addplaceform__image-link");
+
+const imagePreview = document.querySelector("#imagepreview");
+
+const editButton = document.querySelector(".profile__edit-button");
+const addButton = document.querySelector(".profile__add-button");
+
+const closeButtonProfileForm = document.querySelector("#profileform__close-button");
+const closeButtonAddPlaceForm = document.querySelector("#addplaceform__close-button");
+const closeButtonImagePreview = document.querySelector("#imagepreview__close-button");
+const submitButtonProfileForm = document.querySelector("#profileform__submit-button");
+const submitButtonAddPlaceForm = document.querySelector("#addplaceform__submit-button");
+
 let profileName = document.querySelector(".profile__name");
 let profileProfession = document.querySelector(".profile__profession");
 
 let inputFistField;
 let inputSecondField;
 
-let formInputs;
-
 let galleryElements;
 let elementNode; 
 
-let eventEditButton;
-let eventAddButton;
+let cardInputId;
+let icard = 0;
 
-let popupWindow;
-
-let input;
-let inputId;
-
-const formProfileInputs = [
-
-{
-  type:"text",
-  name:"name",
-  placeholder:"Name",
-  class:"form__input",
-},
-
-{
-  type:"text",
-  name:"about-me",
-  placeholder:"About me",
-  class:"form__input", 
-},
-];
-
-const formGelleryInputs = [
-
-{ 
-  type:"text",
-  name:"title",
-  placeholder:"Title", 
-  class:"form__input",
-  required:"",
-},
-
-{ 
-  type:"url",
-  name:"image-link",
-  placeholder:"Image link",
-  class:"form__input",
-  required:"",
-}
-];
 
 const galleryCardsInputs = [
   {
@@ -82,17 +55,15 @@ const galleryCardsInputs = [
     inputFistField: "Lago di Braies",
     inputSecondField: "https://code.s3.yandex.net/web-code/lago.jpg"
   }
-]; 
+];
 
-let cardInputId;
-let icard = 0;
 let cardArray = galleryCardsInputs;
 
 creatingCard (cardArray);
-addListener();
+addListeners();
 
 function creatingCard (cardArray) {
-  for (icard; icard <= galleryCardsInputs.length - 1; icard++) {  
+  for (icard; icard <= galleryCardsInputs.length - 1; icard++) {
     cardInputId = icard;
     addAttributeCardToInput (cardArray);
     creatingGalleryElementStartUp (inputFistField, inputSecondField);
@@ -129,13 +100,6 @@ function addAttributeCardToInput (cardArray) {
   setMultipleAttributesonElement(cardfield);
 }
 
-function addGalleryElementContentStartUp (inputSecondField, inputFistField) {
-  let elementPhotoId = document.querySelector(`#photo__${inputFistField}`);
-  elementPhotoId.setAttribute("src", `${inputSecondField}`);
-  let elementHeaderId = document.querySelector(`#text__${inputFistField}`);
-  elementHeaderId.textContent = inputFistField;
-}
-
 function creatingGalleryElementStartUp (inputFistField, inputSecondField) {
     let galleryTemplate = document.querySelector("#gallery").content;
     galleryElements = document.querySelector('.gallery__elements');
@@ -155,125 +119,52 @@ function creatingGalleryElementStartUp (inputFistField, inputSecondField) {
     elementLikeButtonClass.setAttribute("id", `button-like__${inputFistField.replace(/ /g, '_')}`);
 }
 
-function addListener() {
-  editButton.addEventListener("click", profileListener);
-  addButton.addEventListener("click", galleryListener);
-  closeButton.addEventListener("click", closeForm);
+function addListeners() {
+  editButton.addEventListener("click", openProfileForm);
+  addButton.addEventListener("click", openAddPlaceForm);
+
+  closeButtonAddPlaceForm.addEventListener("click", closeAddPlaceForm);
+  closeButtonProfileForm.addEventListener("click", closeProfileForm );
+
+  submitButtonAddPlaceForm.addEventListener("click", submitAddPlaceForm);
+  submitButtonProfileForm.addEventListener("click", submitProfileForm);
 }
 
-function profileListener() {
-  eventEditButton = true;
-  openForm();
-  editButton.removeEventListener("click", profileListener);
+function openProfileForm() {
+  popupFormAnimationFadeIn (profileForm);
+  inputName.value = profileName.textContent;
+  inputAboutme.value = profileProfession.textContent;
 }
 
-function galleryListener() {
-  eventAddButton = true;
-  openForm();
-  addButton.removeEventListener("click", galleryListener);
+function openAddPlaceForm() {
+  addPlaceFormTitle.value = null;
+  addPlaceFormImageLink.value = null;
+  popupFormAnimationFadeIn (addPlaceForm);
 }
 
-function openForm() {
-  popupFormAnimationFadeIn ();
-  popup.classList.add('popup_visible');
-  inputFistField = 0;
-  inputSecondField = 0;
-  if (eventAddButton) {
-    formInputs = formGelleryInputs;
-    creatingForm (formInputs);
-    creatingFormTitle ();
-    eventAddButton = false;
-  }
-  if (eventEditButton) {
-    formInputs = formProfileInputs;
-    creatingForm (formInputs);
-    creatingFormTitle ();
-    eventEditButton = false;
-  }
+function openImagePreview() { 
+  imagePopupAnimationFadeIn (addPlaceForm);
 }
 
-function creatingForm (formValue) {
-  let popupTemplate = document.querySelector("#popup__template").content;
-  let popupForm = document.querySelector('.popup');
-  popupWindow = popupTemplate.querySelector('.popup__window').cloneNode(true);
-  popupForm.append(popupWindow);
-  for (let i = 0; i <= formInputs.length - 1; i++) {
-    inputId = i;
-    let id = `field_${i+1}`;
-    input = document.createElement("input");
-    input.setAttribute('id', id);
-    addAttributeToInput (formValue);
-    const fieldset = document.querySelector(".form__fieldset");
-    fieldset.appendChild(input);
-    if (eventEditButton) {
-      addProfileAttributeFromProfile (i, id);
-    }
-    if (eventAddButton) {
-      getFormInputNames (i , id);
-    }
-   }
-   let form = document.querySelector(".form");
-   form.addEventListener("submit", inputValue);
-}
-
-function creatingFormTitle () {
-  if (eventEditButton) {
-    popupHeader = document.querySelector('.popup__header').textContent = "Edit profile";
-  }
-  if (eventAddButton) {
-    popupHeader = document.querySelector('.popup__header').textContent = "New place";
-  }
-}
-
-function addAttributeToInput (formValue) {
-  let field = formValue.at(inputId);
-  function setMultipleAttributesonElement(elem, elemAttributes) {
-    Object.keys(field).forEach(attribute => {
-      elem.setAttribute(attribute, elemAttributes[attribute]);
-    });
-  }
-  setMultipleAttributesonElement(input, field);
-}
-
-function addProfileAttributeFromProfile (i, id) {
-  if ((i+1) === 1 ) {
-    getFormInputNames (i , id)
-    profileName = document.querySelector(".profile__name");
-    inputFistField.value = profileName.textContent;
-  }
-  if ((i+1) === 2 ) {
-    getFormInputNames (i , id)
-    profileProfession = document.querySelector(".profile__profession");
-    inputSecondField.value = profileProfession.textContent;
-  }
-}
-
-function getFormInputNames (i , id) {
-  if ((i+1) === 1 ) {
-    inputFistField = document.querySelector(`#${id}`);
-  }
-  if ((i+1) === 2 ) {
-   inputSecondField = document.querySelector(`#${id}`);
-  }
-}
-
-function closeForm() {
-    popupFormAnimationOut ();
-    addListener();
-}
-
-function inputValue (event) {
+function submitAddPlaceForm (event) {
   event.preventDefault();
-  if (popupHeader  === "Edit profile") {
-    profileName.textContent = inputFistField.value;
-    profileProfession.textContent = inputSecondField.value;
-    closeForm();
-  }   
-  if (popupHeader  === "New place") {
-    addGalleryElementContent ();
-    closeForm();
-  } 
-  
+  addGalleryElementContent();
+  closeAddPlaceForm();
+}
+
+function submitProfileForm (event) {
+  event.preventDefault();
+  profileName.textContent = inputName.value;
+  profileProfession.textContent = inputAboutme.value;
+  closeProfileForm();  
+}
+
+function closeProfileForm() {
+  popupFormAnimationOut (profileForm);
+}
+
+function closeAddPlaceForm() {
+  popupFormAnimationOut (addPlaceForm);
 }
 
 function trashButtonListener() {
@@ -304,48 +195,33 @@ function likeButtonListener() {
    }); 
 }
 
-function closeImagePopup(inputFistField) {
-  let imageNode = document.querySelector(`#image-popup__${inputFistField.replace(/ /g, '_')}`);
-  let imageCloseButtonClass = document.querySelector(`#image-close-button__${inputFistField.replace(/ /g, '_')}`);
-  imageCloseButtonClass.addEventListener("click", function () {
-    imagePopupAnimationFadeOut (inputFistField);
+function closeImagePopup(imagePreview) {
+
+  closeButtonImagePreview.addEventListener("click", function () {
+    imagePopupAnimationFadeOut (imagePreview);
    }); 
 }
 
 function addGalleryElementContent () {
-  let elementPhotoId = document.querySelector(`#photo__${inputFistField.value.replace(/ /g, '_')}`);
-  let elementHeaderId = document.querySelector(`#text__${inputFistField.value.replace(/ /g, '_')}`);
   let newObjectToArrayGallery = new Object();
-  newObjectToArrayGallery.inputFistField = inputFistField.value;
-  newObjectToArrayGallery.inputSecondField = inputSecondField.value;
+  newObjectToArrayGallery.inputFistField = addPlaceFormTitle.value;
+  newObjectToArrayGallery.inputSecondField = addPlaceFormImageLink.value;
   let newArrayLength = cardArray.push(newObjectToArrayGallery);
   icard = newArrayLength - 1;
   creatingNewCard (cardArray);  
 }
 
 function creatingImagePopup(inputFistField, inputSecondField) {
-  let imageTemplate = document.querySelector("#image").content;
-  let imagePopup = document.querySelector(".image");
-  let imageNode = imageTemplate.querySelector(".image__popup").cloneNode(true);
-  imageNode.setAttribute("id", `image-popup__${inputFistField.replace(/ /g, '_')}`);
-  let imagePhotoClass = imageNode.querySelector(".image__content");
-  imagePhotoClass.setAttribute("id", `image__${inputFistField.replace(/ /g, '_')}`);
-  imagePhotoClass.setAttribute("alt", `image ${inputFistField.replace(/ /g, '_')}`);
+  let imagePhotoClass = document.querySelector(".image__content");
   imagePhotoClass.setAttribute("src", `${inputSecondField}`);
-  let imageHeaderClass = imageNode.querySelector(".image__header");
-  imageHeaderClass.setAttribute("id", `image-text__${inputFistField.replace(/ /g, '_')}`);
-  imageHeaderClass.querySelector(`#image-text__${inputFistField.replace(/ /g, '_')}`);
-  imageHeaderClass.textContent = inputFistField;
-  let imageCloseButtonClass = imageNode.querySelector(".image__close-button");
-  imageCloseButtonClass.setAttribute("id", `image-close-button__${inputFistField.replace(/ /g, '_')}`);
-  imagePopup.prepend(imageNode);
-  imageNode.classList.add('image__popup_visible');
-  imagePopupAnimationFadeIn (inputFistField);
-  closeImagePopup(inputFistField);
+  let imageHeaderClass = document.querySelector("#imagepreview__header");
+  imageHeaderClass.textContent = inputFistField.replaceAll("photo_", "").replaceAll("_", " ");
+  imagePopupAnimationFadeIn (imagePreview);
+  closeImagePopup(imagePreview);
 }
 
-function imagePopupAnimationFadeIn (inputFistField) {
-  let imageNode = document.querySelector(`#image-popup__${inputFistField.replace(/ /g, '_')}`);
+function imagePopupAnimationFadeIn (newadd) {
+  newadd.classList.add('popup_visible');
   let opacity = 0;
   const idop = setInterval(frame, 0.1);
   function frame() {
@@ -353,53 +229,50 @@ function imagePopupAnimationFadeIn (inputFistField) {
       clearInterval(idop);
     } else {
       opacity++; 
-      imageNode.style.opacity = opacity + '%';
+      newadd.style.opacity = opacity + '%';
     }
   }
 }
 
-function imagePopupAnimationFadeOut (inputFistField) {
-  let imageNode = document.querySelector(`#image-popup__${inputFistField.replace(/ /g, '_')}`);
+function imagePopupAnimationFadeOut (addclose) {
   let opacity = 100;
   const idop = setInterval(frame, 0.1);
   function frame() {
     if (opacity == 0) {
       clearInterval(idop);
-      imageNode.classList.remove('image__popup_visible');
+      addclose.classList.remove('popup_visible');
     } else {
       opacity--; 
-      imageNode.style.opacity = opacity + '%';
+      addclose.style.opacity = opacity + '%';
     }
   }
 }
 
-function popupFormAnimationFadeIn () {
-  let popupForm = document.querySelector('.popup');
+function popupFormAnimationFadeIn (newadd) {
+  newadd.classList.add('popup_visible');
   let opacity = 0;
   const idop = setInterval(frame, 0.1);
   function frame() {
     if (opacity == 100) {
       clearInterval(idop);
-    } else {
+      
+    } else {      
       opacity++;
-      popupForm.style.opacity = opacity + '%';
+      newadd.style.opacity = opacity + '%';
     }
   }
 }
 
-function popupFormAnimationOut () {
-  let popupForm = document.querySelector('.popup');
+function popupFormAnimationOut (addclose) {
   let opacity = 100;
   const idop = setInterval(frame, 0.1);
   function frame() {
     if (opacity == 0) {
       clearInterval(idop);
-      popup.classList.remove('popup_visible');
-      popupWindow.remove();
+      addclose.classList.remove('popup_visible');
     } else {
       opacity--; 
-      popupForm.style.opacity = opacity + '%';
+      addclose.style.opacity = opacity + '%';
     }
   }
 }
-
