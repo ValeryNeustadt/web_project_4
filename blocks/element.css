@@ -59,7 +59,7 @@
     background-image: url(../images/like-icon-active.svg);
 }
 
-.element__trash {
+.element__trash-button {
     position: absolute;
     right: 15px;
     top: 18px;
@@ -80,6 +80,6 @@
     opacity: 50%;
 }
 
-.element__trash:hover {
+.element__trash-button:hover {
     opacity: 60%;
 }

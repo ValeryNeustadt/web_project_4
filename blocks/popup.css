@@ -1,5 +1,5 @@
 .popup {
-    display: none;
+    display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
     position: fixed;
@@ -9,11 +9,24 @@
     padding: 100vh;
     background: rgba(0, 0, 0, 0.5);
     z-index: 2;
+    visibility: hidden;
     opacity: 0;
+    
+
 }
 
-.popup_visible {
-    display: grid;
+.popup_opened {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
+
+}
+
+.popup_closed {
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+
 }
 
 .popup__window {

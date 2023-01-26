@@ -25,6 +25,7 @@
             <div class="popup__window">
                     <h2 class="popup__header">Edit profile</h2>
                     <form 
+                        id="profileform"
                         action="submit"
                         class="form popup__form"
                         name="profileForm"
@@ -69,9 +70,10 @@
             <div class="popup__window">
                     <h2 class="popup__header">New place</h2>
                     <form 
+                        id="addplaceform"
                         action="submit"
                         class="form popup__form"
-                        name="profileForm"
+                        name="addplaceform"
                     >
                         <fieldset class="form__fieldset">
                             <input 
@@ -112,7 +114,7 @@
             </button>
             <img 
                 id="imagepreview__picture"
-                src="https://code.s3.yandex.net/web-code/yosemite.jpg" 
+                src=" " 
                 alt="Photo Preview" 
                 class="popup__image-content"
             >
@@ -189,17 +191,14 @@
 
     <div 
         class="element" 
-        id="id"
     >
         <button 
-            id="id_button_gallery"
-            class="element__trash" 
+            class="element__trash-button" 
             type="button" 
-            aria-label="trash button" 
-            name="name_button_gallery">
+            aria-label="trash-button" 
+        >
         </button>
         <img
-            id="id_img_gallery"
             src="url"
             alt="alt_img_gallery"
             class="element__photo"
@@ -211,7 +210,6 @@
                 >
             </h2>
             <button
-                id="id_button_element" 
                 class="element__button-like" 
                 type="button"
                 aria-label="like button">
