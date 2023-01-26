@@ -1,4 +1,4 @@
-const profileForm = document.querySelector("#profileform");
+const profileForm = document.querySelector("#popup__profileform");
 
 const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__profession");
@@ -7,7 +7,7 @@ const inputName = document.querySelector("#profileform__name");
 const inputAboutme = document.querySelector("#profileform__about-me");
 
 
-const addPlaceForm = document.querySelector("#addplaceform");
+const addPlaceForm = document.querySelector("#popup__addplaceform");
 let addPlaceFormTitle = document.querySelector("#addplaceform__title");
 let addPlaceFormImageLink = document.querySelector("#addplaceform__image-link");
 
