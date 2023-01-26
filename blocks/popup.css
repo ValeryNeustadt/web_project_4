@@ -11,22 +11,12 @@
     z-index: 2;
     visibility: hidden;
     opacity: 0;
-    
-
+    transition: all 0.2s ease-in;
 }
 
 .popup_opened {
     visibility: visible;
     opacity: 1;
-    transition: 0.5s;
-
-}
-
-.popup_closed {
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.5s;
-
 }
 
 .popup__window {
@@ -37,7 +27,6 @@
     max-width: 430px;
     background-color: rgba(255, 255, 255, 1);
     width: 430px;
-    
 }
 
 .popup__close-button {

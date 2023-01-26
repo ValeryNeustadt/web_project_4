@@ -1,15 +1,13 @@
-const profileForm = document.querySelector("#popup__profileform");
-
 const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__profession");
 
+const profileForm = document.querySelector("#popup__profileform");
 const inputName = document.querySelector("#profileform__name");
 const inputAboutme = document.querySelector("#profileform__about-me");
 
-
 const addPlaceForm = document.querySelector("#popup__addplaceform");
-let addPlaceFormTitle = document.querySelector("#addplaceform__title");
-let addPlaceFormImageLink = document.querySelector("#addplaceform__image-link");
+const addPlaceFormTitle = document.querySelector("#addplaceform__title");
+const addPlaceFormImageLink = document.querySelector("#addplaceform__image-link");
 
 const imagePreview = document.querySelector("#imagepreview");
 const popupImageContent = document.querySelector(".popup__image-content");
@@ -17,8 +15,6 @@ const popupImageHeader = document.querySelector(".popup__image-header");
 
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
-
-
 const closeButtons = document.querySelectorAll(".popup__close-button");
 
 const submitButtonProfileForm = document.querySelector("#profileform__submit-button");
@@ -27,7 +23,8 @@ const submitButtonAddPlaceForm = document.querySelector("#addplaceform__submit-b
 const formAddPlace = document.querySelector("#addplaceform");
 const formProfile = document.querySelector("#profileform");
 
-
+const galleryElements = document.querySelector('.gallery__elements');
+const galleryTemplate = document.querySelector('#gallery').content;
 
 const galleryCardsInputs = [
   {
@@ -57,53 +54,11 @@ const galleryCardsInputs = [
 ];
 
 
-addListeners();
-
-const galleryElements = document.querySelector('.gallery__elements');
-const galleryTemplate = document.querySelector('#gallery').content;
-
-
-function createElement(element) {
-  const galleryElement = galleryTemplate.querySelector('.element').cloneNode(true);
-  galleryElement.querySelector('.element__text').textContent = element.name;
-
-  const elementPhoto = galleryElement.querySelector('.element__photo');
-  elementPhoto.src = element.link;
-  elementPhoto.alt = `Photo of ${element.name}`;
-
-  elementPhoto.addEventListener('click', () => {
-    galleryElement.querySelector('.element__photo').src = element.link;
-    popupImageContent.setAttribute("src", `${element.link}`);
-    popupImageHeader.textContent = element.name;
-    imagePreview.classList.remove('popup_closed');
-    imagePreview.classList.add('popup_opened');
-
-  })
-
-  const trashButton = galleryElement.querySelector('.element__trash-button');
-  trashButton.addEventListener("click", function () {
-    galleryElement.remove();
-  });
-
-  const likeButton = galleryElement.querySelector('.element__button-like');
-  likeButton.addEventListener("click", function () {
-    likeButton.classList.toggle("element__button-like_active");
-  });
-
-  console.log(galleryElement);
-  return galleryElement;
-}
-
 galleryCardsInputs.forEach(element => {
   galleryElements.append(createElement(element));
 });
 
-function addGalleryElementContent() {
-  let newObjectGallery = new Object();
-  newObjectGallery.name = addPlaceFormTitle.value;
-  newObjectGallery.link = addPlaceFormImageLink.value;
-  galleryElements.prepend(createElement(newObjectGallery));
-}
+addListeners();
 
 function addListeners() {
   editButton.addEventListener("click", openProfileForm);
@@ -118,28 +73,62 @@ function addListeners() {
   formProfile.addEventListener("submit", submitProfileForm);
 }
 
+function createElement(element) {
+  const galleryElement = galleryTemplate.querySelector('.element').cloneNode(true);
+  galleryElement.querySelector('.element__text').textContent = element.name;
+
+  const elementPhoto = galleryElement.querySelector('.element__photo');
+  elementPhoto.src = element.link;
+  elementPhoto.alt = `Photo of ${element.name}`;
+
+  elementPhoto.addEventListener('click', () => {
+    popupImageContent.setAttribute("src", `${element.link}`);
+    popupImageContent.setAttribute("alt", `Photo of ${element.name}`);
+    popupImageHeader.textContent = element.name;
+    openPopup(imagePreview);
+  })
+
+  const trashButton = galleryElement.querySelector('.element__trash-button');
+  trashButton.addEventListener("click", function () {
+    galleryElement.remove();
+  });
+
+  const likeButton = galleryElement.querySelector('.element__button-like');
+  likeButton.addEventListener("click", function () {
+    likeButton.classList.toggle("element__button-like_active");
+  });
+
+  return galleryElement;
+}
+
+function addGalleryElementContent() {
+  const newObjectGallery = new Object();
+  newObjectGallery.name = addPlaceFormTitle.value;
+  newObjectGallery.link = addPlaceFormImageLink.value;
+  galleryElements.prepend(createElement(newObjectGallery));
+}
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+}
 function closePopup(popup) {
-  popup.classList.add('popup_closed');
   popup.classList.remove('popup_opened');
 }
 
 function openProfileForm() {
-  profileForm.classList.remove('popup_closed');
-  profileForm.classList.add('popup_opened');
+  openPopup(profileForm);
   inputName.value = profileName.textContent;
   inputAboutme.value = profileProfession.textContent;
 }
 
 function openAddPlaceForm() {
-  addPlaceForm.classList.remove('popup_closed');
-  addPlaceForm.classList.add('popup_opened');
+  openPopup(addPlaceForm);
 }
 
 function submitAddPlaceForm(event) {
   event.preventDefault();
   addGalleryElementContent();
   closePopup(addPlaceForm);
-  formAddPlace.reset();
 }
 
 function submitProfileForm(event) {
@@ -147,6 +136,4 @@ function submitProfileForm(event) {
   profileName.textContent = inputName.value;
   profileProfession.textContent = inputAboutme.value;
   closePopup(profileForm);
-  formAddPlace.reset();
 }
-
