@@ -1,7 +1,7 @@
 const showError = (props) => {
     const { inputItem, inputErrorClass, inputSelector, errorClass, formSelector} = props;   
     inputItem.classList.add(inputErrorClass);
-    const errorMessage = document.querySelector(`${inputSelector}_${inputItem.name}_error`);
+    const errorMessage = document.querySelector(`${inputSelector}-${inputItem.name}_error`);
     errorMessage.textContent = inputItem.validationMessage;
     errorMessage.classList.add(errorClass); 
 }
@@ -21,7 +21,7 @@ const showError = (props) => {
 const hideError = (props) => {
     const {inputItem, inputErrorClass, inputSelector, errorClass} = props;
     inputItem.classList.remove(inputErrorClass);
-    const errorMessage = document.querySelector(`${inputSelector}_${inputItem.name}_error`);
+    const errorMessage = document.querySelector(`${inputSelector}-${inputItem.name}_error`);
     errorMessage.textContent = "";
     errorMessage.classList.remove(errorClass);
 }
