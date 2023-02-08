@@ -16,12 +16,7 @@
 
     <section class="popups">
         <div class="popup" id="popup__profileform">
-            <button
-                id="profileform__close-button"
-                class="popup__close-button" 
-                type="button" 
-                aria-label="close button">
-            </button>
+
             <div class="popup__window">
                     <h2 class="popup__header">Edit profile</h2>
                     <form 
@@ -38,16 +33,21 @@
                                 name="name" 
                                 placeholder="Name"
                                 required
+                                minlength="2"
+                                maxlength="40"
                             >
-
+                            <span class="form__input_name_error form__error">no errors</span>
                             <input 
                                 type="text" 
                                 class="form__input"
                                 id="profileform__about-me" 
-                                name="about-me" 
+                                name="about_me" 
                                 placeholder="About me"
                                 required
+                                minlength="2"
+                                maxlength="200"
                             >
+                            <span class="form__input_about_me_error form__error">no errors</span>
                         </fieldset>
 
                         <button
@@ -59,6 +59,12 @@
                         </button>
                     </form>
             </div>
+            <button
+            id="profileform__close-button"
+            class="popup__close-button" 
+            type="button" 
+            aria-label="close button">
+        </button>
         </div>
         <div class="popup" id="popup__addplaceform">
             <button
@@ -83,16 +89,19 @@
                                 name="title" 
                                 placeholder="Title"
                                 required
+                                minlength="1"
+                                maxlength="30"
                             >
-
+                            <span class="form__input_title_error form__error">no errors</span>
                             <input 
                                 type="url" 
                                 class="form__input"
                                 id="addplaceform__image-link" 
-                                name="image-link" 
+                                name="image_link" 
                                 placeholder="Image link"
                                 required
                             >
+                            <span class="form__input_image_link_error form__error">no errors</span>
                         </fieldset>
 
                         <button
@@ -219,7 +228,8 @@
     
 </template>
 
-<script src="./scripts/code.js"></script>
+<script src="./scripts/index.js"></script>
+<script src="./scripts/validate.js"></script>
 
 </body>
 </html>

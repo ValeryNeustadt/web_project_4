@@ -1,3 +1,5 @@
+// import  {resetValidity} from "./validate.js";
+
 const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__profession");
 
@@ -66,11 +68,34 @@ function addListeners() {
 
   closeButtons.forEach((button) => {
     const popup = button.closest('.popup');
+
     button.addEventListener('click', () => closePopup(popup));
+
+    closePopupOutfield (popup);  
+    closePopupEscape (popup);
+
   });
 
   formAddPlace.addEventListener("submit", submitAddPlaceForm);
   formProfile.addEventListener("submit", submitProfileForm);
+}
+
+function closePopupOutfield (popup) {
+  document.addEventListener('mousedown', function (evt)  {
+    if (evt.target.matches(".popup")) {
+        closePopup(popup);
+      }
+  });
+  
+}
+
+function closePopupEscape (popup) {
+  document.addEventListener('keydown', function (evt) {
+    if (evt.key === "Escape") {
+      closePopup(popup);
+    } 
+  });
+  
 }
 
 function createElement(element) {
@@ -86,7 +111,11 @@ function createElement(element) {
     popupImageContent.setAttribute("alt", `Photo of ${element.name}`);
     popupImageHeader.textContent = element.name;
     openPopup(imagePreview);
+  
   })
+
+
+
 
   const trashButton = galleryElement.querySelector('.element__trash-button');
   trashButton.addEventListener("click", function () {
@@ -101,6 +130,8 @@ function createElement(element) {
   return galleryElement;
 }
 
+
+
 function addGalleryElementContent() {
   const newObjectGallery = new Object();
   newObjectGallery.name = addPlaceFormTitle.value;
@@ -110,19 +141,23 @@ function addGalleryElementContent() {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+
 }
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  // resetValidity();
 }
 
 function openProfileForm() {
   openPopup(profileForm);
   inputName.value = profileName.textContent;
   inputAboutme.value = profileProfession.textContent;
+  
 }
 
 function openAddPlaceForm() {
   openPopup(addPlaceForm);
+  
 }
 
 function submitAddPlaceForm(event) {
@@ -137,3 +172,6 @@ function submitProfileForm(event) {
   profileProfession.textContent = inputAboutme.value;
   closePopup(profileForm);
 }
+
+
+
