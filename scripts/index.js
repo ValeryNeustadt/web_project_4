@@ -1,4 +1,4 @@
-// import  {resetValidity} from "./validate.js";
+import  {restartValidation, resetValidityStart} from "./validate.js";
 
 const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__profession");
@@ -65,37 +65,27 @@ addListeners();
 function addListeners() {
   editButton.addEventListener("click", openProfileForm);
   addButton.addEventListener("click", openAddPlaceForm);
-
-  closeButtons.forEach((button) => {
-    const popup = button.closest('.popup');
-
-    button.addEventListener('click', () => closePopup(popup));
-
-    closePopupOutfield (popup);  
-    closePopupEscape (popup);
-
-  });
-
+//Thanks!
+  const popups = document.querySelectorAll('.popup')
+  popups.forEach((popup) => {
+      popup.addEventListener('mousedown', (evt) => {
+          if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+          }
+          if (evt.target.classList.contains('popup__close-button')) {
+            closePopup(popup)
+          }
+      })
+  })
   formAddPlace.addEventListener("submit", submitAddPlaceForm);
   formProfile.addEventListener("submit", submitProfileForm);
 }
 
-function closePopupOutfield (popup) {
-  document.addEventListener('mousedown', function (evt)  {
-    if (evt.target.matches(".popup")) {
-        closePopup(popup);
-      }
-  });
-  
-}
-
-function closePopupEscape (popup) {
-  document.addEventListener('keydown', function (evt) {
-    if (evt.key === "Escape") {
-      closePopup(popup);
-    } 
-  });
-  
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened'); // find the opened popup
+    closePopup(openedPopup); // close the opened popup with `closePopup`
+  }
 }
 
 function createElement(element) {
@@ -114,9 +104,6 @@ function createElement(element) {
   
   })
 
-
-
-
   const trashButton = galleryElement.querySelector('.element__trash-button');
   trashButton.addEventListener("click", function () {
     galleryElement.remove();
@@ -130,8 +117,6 @@ function createElement(element) {
   return galleryElement;
 }
 
-
-
 function addGalleryElementContent() {
   const newObjectGallery = new Object();
   newObjectGallery.name = addPlaceFormTitle.value;
@@ -141,29 +126,35 @@ function addGalleryElementContent() {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-
+  document.addEventListener('keydown', closeByEscape);
+  
 }
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  // resetValidity();
+  document.removeEventListener('keydown', closeByEscape);
+  if(!popup.querySelector(".popup__image-content")) {
+    return popup.querySelector(".popup__form").reset(); 
+  };
 }
 
 function openProfileForm() {
   openPopup(profileForm);
   inputName.value = profileName.textContent;
   inputAboutme.value = profileProfession.textContent;
-  
+  submitButtonProfileForm.disabled = true;
+  resetValidityStart();
 }
 
 function openAddPlaceForm() {
   openPopup(addPlaceForm);
-  
+  resetValidityStart();
 }
 
 function submitAddPlaceForm(event) {
   event.preventDefault();
   addGalleryElementContent();
   closePopup(addPlaceForm);
+  restartValidation();
 }
 
 function submitProfileForm(event) {
@@ -171,7 +162,5 @@ function submitProfileForm(event) {
   profileName.textContent = inputName.value;
   profileProfession.textContent = inputAboutme.value;
   closePopup(profileForm);
+  restartValidation();
 }
-
-
-
