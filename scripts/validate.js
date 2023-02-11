@@ -1,4 +1,4 @@
-const validationParams = {
+export const validationParams = {
     formSelector: ".popup__form",
     inputSelector: ".form__input",
     submitButtonSelector: ".form__button",
@@ -28,40 +28,53 @@ const resetValidity = (props) => {
     });
 }
 
-const toggleButtonState = (props) => {
+const disableSubmitButton = (props) => {
     const {
         formSelector, 
-        inputSelector, 
+        inputSelector,
         inactiveButtonClass, 
         submitButtonSelector
-    } = props;
-
+    } = props; 
+    
     const forms =  Array.from(document.querySelectorAll(formSelector));
     forms.forEach((form) => {
         const inputs = form.querySelectorAll(inputSelector);
         inputs.forEach((inputItem) => {
             const formToCheck = inputItem.closest(formSelector);
             const buttonElement = formToCheck.querySelector(submitButtonSelector);
-            if (hasInvalidInput({ formToCheck, inputSelector })) {
+            toggleButtonState({
+                inactiveButtonClass, 
+                buttonElement,
+                inputs
+            });
+        });
+    });
+}
+
+const toggleButtonState = (props) => {
+    const {
+        inactiveButtonClass, 
+        buttonElement,
+        inputs
+    } = props;
+            if (hasInvalidInput({inputs})) {
                 buttonElement.classList.add(inactiveButtonClass);
                 buttonElement.disabled = true;
             } else {
                 buttonElement.classList.remove(inactiveButtonClass);
                 buttonElement.disabled = false;  
             }
-        });
-    });
 }
 
-const hasInvalidInput = (props) => { 
-    const {  
-        formToCheck,  
-        inputSelector  
-    } = props; 
-    const inputs = Array.from(formToCheck.querySelectorAll(inputSelector)); 
-    return inputs.some((input) => { 
-      return !input.validity.valid; 
-    }); 
+const hasInvalidInput = (props) => {  
+    const {   
+        inputs  
+    } = props;  
+    const inputsArray = Array.from(inputs);  
+    return inputsArray.some((input) => {  
+      return !input.validity.valid;  
+    });  
+
 } 
 
 const showError = (props) => {
@@ -113,10 +126,17 @@ const enableValidation = (props) => {
             form.addEventListener("submit", (e) => {
                 e.preventDefault();
             });
+            const buttonElement = form.querySelector(submitButtonSelector);
             const inputs = form.querySelectorAll(inputSelector);       
             inputs.forEach((inputItem) => {
                 inputItem.addEventListener("input", () => {
                     const isValid = checkValidity(inputItem);
+                    toggleButtonState({ 
+                        inactiveButtonClass, 
+                        buttonElement,
+                        inputs,
+
+                    });
                     if(isValid) {
                         hideError({ 
                             inputItem, 
@@ -124,24 +144,12 @@ const enableValidation = (props) => {
                             inputSelector, 
                             errorClass
                         });
-                        toggleButtonState({ 
-                            formSelector, 
-                            inputSelector, 
-                            inactiveButtonClass, 
-                            submitButtonSelector
-                        })
                     } else {
                         showError({ 
                             inputItem, 
                             inputErrorClass, 
                             inputSelector, 
                             errorClass
-                        });
-                        toggleButtonState({ 
-                            formSelector, 
-                            inputSelector, 
-                            inactiveButtonClass, 
-                            submitButtonSelector
                         });
                     }
                 });
@@ -154,11 +162,10 @@ const enableValidation = (props) => {
 
 enableValidation(validationParams); 
 
-export function disableSubmitButton() {
-    toggleButtonState(validationParams);
+export function disableSubmitButtonOnStart() {
+    disableSubmitButton(validationParams);
 }
 
 export function resetValidityOnStart () {
     resetValidity(validationParams); 
 }
-

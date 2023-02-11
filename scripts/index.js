@@ -1,4 +1,4 @@
-import  {disableSubmitButton, resetValidityOnStart} from "./validate.js";
+import  {disableSubmitButtonOnStart, resetValidityOnStart, validationParams} from "./validate.js";
 
 const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__profession");
@@ -137,13 +137,13 @@ function openProfileForm() {
   openPopup(profileForm);
   inputName.value = profileName.textContent;
   inputAboutme.value = profileProfession.textContent;
-  disableSubmitButton();
+  disableSubmitButtonOnStart();
   resetValidityOnStart();
 }
 
 function openAddPlaceForm() {
   openPopup(addPlaceForm);
-  disableSubmitButton();
+  disableSubmitButtonOnStart();
   resetValidityOnStart();
 }
 
