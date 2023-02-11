@@ -1,4 +1,4 @@
-import  {restartValidation, resetValidityStart} from "./validate.js";
+import  {disableSubmitButton, resetValidityOnStart} from "./validate.js";
 
 const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__profession");
@@ -83,8 +83,8 @@ function addListeners() {
 
 function closeByEscape(evt) {
   if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened'); // find the opened popup
-    closePopup(openedPopup); // close the opened popup with `closePopup`
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
   }
 }
 
@@ -100,8 +100,7 @@ function createElement(element) {
     popupImageContent.setAttribute("src", `${element.link}`);
     popupImageContent.setAttribute("alt", `Photo of ${element.name}`);
     popupImageHeader.textContent = element.name;
-    openPopup(imagePreview);
-  
+    openPopup(imagePreview);  
   })
 
   const trashButton = galleryElement.querySelector('.element__trash-button');
@@ -132,29 +131,27 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEscape);
-  if(!popup.querySelector(".popup__image-content")) {
-    return popup.querySelector(".popup__form").reset(); 
-  };
 }
 
 function openProfileForm() {
   openPopup(profileForm);
   inputName.value = profileName.textContent;
   inputAboutme.value = profileProfession.textContent;
-  submitButtonProfileForm.disabled = true;
-  resetValidityStart();
+  disableSubmitButton();
+  resetValidityOnStart();
 }
 
 function openAddPlaceForm() {
   openPopup(addPlaceForm);
-  resetValidityStart();
+  disableSubmitButton();
+  resetValidityOnStart();
 }
 
 function submitAddPlaceForm(event) {
   event.preventDefault();
   addGalleryElementContent();
   closePopup(addPlaceForm);
-  restartValidation();
+  event.target.reset();
 }
 
 function submitProfileForm(event) {
@@ -162,5 +159,5 @@ function submitProfileForm(event) {
   profileName.textContent = inputName.value;
   profileProfession.textContent = inputAboutme.value;
   closePopup(profileForm);
-  restartValidation();
+  event.target.reset();
 }
