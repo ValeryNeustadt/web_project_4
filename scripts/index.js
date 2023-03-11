@@ -1,36 +1,4 @@
 import {
-<<<<<<< HEAD
-  disableSubmitButtonOnStart,
-  resetValidityOnStart,
-  validationParams,
-} from "./validate.js";
-
-const profileName = document.querySelector(".profile__name");
-const profileProfession = document.querySelector(".profile__profession");
-
-const profileForm = document.querySelector("#popup__profileform");
-const inputName = document.querySelector("#profileform__name");
-const inputAboutme = document.querySelector("#profileform__about-me");
-
-const addPlaceForm = document.querySelector("#popup__addplaceform");
-const addPlaceFormTitle = document.querySelector("#addplaceform__title");
-const addPlaceFormImageLink = document.querySelector(
-  "#addplaceform__image-link"
-);
-
-const imagePreview = document.querySelector("#imagepreview");
-const popupImageContent = document.querySelector(".popup__image-content");
-const popupImageHeader = document.querySelector(".popup__image-header");
-
-const editButton = document.querySelector(".profile__edit-button");
-const addButton = document.querySelector(".profile__add-button");
-
-const formAddPlace = document.querySelector("#addplaceform");
-const formProfile = document.querySelector("#profileform");
-
-const galleryElements = document.querySelector(".gallery__elements");
-const galleryTemplate = document.querySelector("#gallery").content;
-=======
   Card
 } from "./Card.js";
 
@@ -59,7 +27,6 @@ const validationParams = {
 }
 
 const galleryElements = document.querySelector('.gallery__elements');
->>>>>>> develop
 
 const galleryCardsInputs = [
   {
@@ -88,69 +55,6 @@ const galleryCardsInputs = [
   },
 ];
 
-<<<<<<< HEAD
-galleryCardsInputs.forEach((element) => {
-  galleryElements.append(createElement(element));
-});
-
-addListeners();
-
-function addListeners() {
-  editButton.addEventListener("click", openProfileForm);
-  addButton.addEventListener("click", openAddPlaceForm);
-  const popups = document.querySelectorAll(".popup");
-  popups.forEach((popup) => {
-    popup.addEventListener("mousedown", (evt) => {
-      if (evt.target.classList.contains("popup_opened")) {
-        closePopup(popup);
-      }
-      if (evt.target.classList.contains("popup__close-button")) {
-        closePopup(popup);
-      }
-    });
-  });
-  formAddPlace.addEventListener("submit", submitAddPlaceForm);
-  formProfile.addEventListener("submit", submitProfileForm);
-}
-
-function closeByEscape(evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_opened");
-    closePopup(openedPopup);
-  }
-}
-
-function createElement(element) {
-  const galleryElement = galleryTemplate
-    .querySelector(".element")
-    .cloneNode(true);
-  galleryElement.querySelector(".element__text").textContent = element.name;
-
-  const elementPhoto = galleryElement.querySelector(".element__photo");
-  elementPhoto.src = element.link;
-  elementPhoto.alt = `Photo of ${element.name}`;
-
-  elementPhoto.addEventListener("click", () => {
-    popupImageContent.setAttribute("src", `${element.link}`);
-    popupImageContent.setAttribute("alt", `Photo of ${element.name}`);
-    popupImageHeader.textContent = element.name;
-    openPopup(imagePreview);
-  });
-
-  const trashButton = galleryElement.querySelector(".element__trash-button");
-  trashButton.addEventListener("click", function () {
-    galleryElement.remove();
-  });
-
-  const likeButton = galleryElement.querySelector(".element__button-like");
-  likeButton.addEventListener("click", function () {
-    likeButton.classList.toggle("element__button-like_active");
-  });
-
-  return galleryElement;
-}
-
-=======
 const enableValidation = (validationParams) => {
   const Validation = new FormValidation(validationParams);
   Validation.enableValidation();  
@@ -174,7 +78,6 @@ function resetValidityOnStart () {
 resetValidity(validationParams); 
 }
 
->>>>>>> develop
 function addGalleryElementContent() {
   const newObjectGallery = new Object();
   const addPlaceFormTitle = document.querySelector("#addplaceform__title");
@@ -184,29 +87,6 @@ function addGalleryElementContent() {
   newObjectGallery.link = addPlaceFormImageLink.value;
   newObjectGallery.new = true; 
 
-<<<<<<< HEAD
-function openPopup(popup) {
-  popup.classList.add("popup_opened");
-  document.addEventListener("keydown", closeByEscape);
-}
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
-  document.removeEventListener("keydown", closeByEscape);
-}
-
-function openProfileForm() {
-  openPopup(profileForm);
-  inputName.value = profileName.textContent;
-  inputAboutme.value = profileProfession.textContent;
-  disableSubmitButtonOnStart();
-  resetValidityOnStart();
-}
-
-function openAddPlaceForm() {
-  openPopup(addPlaceForm);
-  disableSubmitButtonOnStart();
-  resetValidityOnStart();
-=======
   renderOneElement(newObjectGallery);
 }
 
@@ -224,20 +104,15 @@ const renderOneElement = (data) => {
   } else {
     galleryElements.append(cardElement);
   }  
->>>>>>> develop
 }
 
 function submitAddPlaceForm(event) {
   event.preventDefault();
   addGalleryElementContent();
   closePopup(addPlaceForm);
-<<<<<<< HEAD
-  event.target.reset();
-=======
   event
     .target
     .reset();
->>>>>>> develop
 }
 
 function submitProfileForm(event) {
@@ -245,10 +120,6 @@ function submitProfileForm(event) {
   profileName.textContent = inputName.value;
   profileProfession.textContent = inputAboutme.value;
   closePopup(profileForm);
-<<<<<<< HEAD
-  event.target.reset();
-}
-=======
   event
     .target
     .reset();
@@ -271,4 +142,3 @@ export {
   resetValidityOnStart,
   disableSubmitButtonOnStart,
 }
->>>>>>> develop
