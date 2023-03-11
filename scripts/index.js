@@ -1,4 +1,5 @@
 import {
+<<<<<<< HEAD
   disableSubmitButtonOnStart,
   resetValidityOnStart,
   validationParams,
@@ -29,6 +30,36 @@ const formProfile = document.querySelector("#profileform");
 
 const galleryElements = document.querySelector(".gallery__elements");
 const galleryTemplate = document.querySelector("#gallery").content;
+=======
+  Card
+} from "./Card.js";
+
+import {     
+  addListeners, 
+  profileForm, 
+  addPlaceForm,
+  closePopup,
+  profileName,
+  inputName,
+  profileProfession,
+  inputAboutme
+} from "./utils.js";
+
+import { 
+  FormValidation 
+} from "./FormValidator.js";
+
+const validationParams = {
+  formSelector: ".popup__form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__button",
+  inactiveButtonClass: "form__button_disabled",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__error_visible",
+}
+
+const galleryElements = document.querySelector('.gallery__elements');
+>>>>>>> develop
 
 const galleryCardsInputs = [
   {
@@ -57,6 +88,7 @@ const galleryCardsInputs = [
   },
 ];
 
+<<<<<<< HEAD
 galleryCardsInputs.forEach((element) => {
   galleryElements.append(createElement(element));
 });
@@ -118,13 +150,41 @@ function createElement(element) {
   return galleryElement;
 }
 
-function addGalleryElementContent() {
-  const newObjectGallery = new Object();
-  newObjectGallery.name = addPlaceFormTitle.value;
-  newObjectGallery.link = addPlaceFormImageLink.value;
-  galleryElements.prepend(createElement(newObjectGallery));
+=======
+const enableValidation = (validationParams) => {
+  const Validation = new FormValidation(validationParams);
+  Validation.enableValidation();  
 }
 
+const disableSubmitButton = (validationParams) => {
+const  disableSubmit = new FormValidation(validationParams);
+disableSubmit.disableSubmitButton();
+}
+
+function disableSubmitButtonOnStart() {
+  disableSubmitButton(validationParams);
+}  
+
+const resetValidity = (validationParams) => {
+  const  resetValidity = new FormValidation(validationParams);
+  resetValidity.resetValidity();
+}
+
+function resetValidityOnStart () {
+resetValidity(validationParams); 
+}
+
+>>>>>>> develop
+function addGalleryElementContent() {
+  const newObjectGallery = new Object();
+  const addPlaceFormTitle = document.querySelector("#addplaceform__title");
+  const addPlaceFormImageLink = document.querySelector("#addplaceform__image-link");
+  
+  newObjectGallery.name = addPlaceFormTitle.value;
+  newObjectGallery.link = addPlaceFormImageLink.value;
+  newObjectGallery.new = true; 
+
+<<<<<<< HEAD
 function openPopup(popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closeByEscape);
@@ -146,13 +206,38 @@ function openAddPlaceForm() {
   openPopup(addPlaceForm);
   disableSubmitButtonOnStart();
   resetValidityOnStart();
+=======
+  renderOneElement(newObjectGallery);
+}
+
+const renderArrayElements = (galleryCardsInputs) => { 
+  galleryCardsInputs.forEach((data) => {
+    renderOneElement(data)
+  });
+}
+
+const renderOneElement = (data) => {
+  const card = new Card(data);
+  const cardElement = card.generateCard();  
+  if (data.new) {
+    galleryElements.prepend(cardElement);
+  } else {
+    galleryElements.append(cardElement);
+  }  
+>>>>>>> develop
 }
 
 function submitAddPlaceForm(event) {
   event.preventDefault();
   addGalleryElementContent();
   closePopup(addPlaceForm);
+<<<<<<< HEAD
   event.target.reset();
+=======
+  event
+    .target
+    .reset();
+>>>>>>> develop
 }
 
 function submitProfileForm(event) {
@@ -160,5 +245,30 @@ function submitProfileForm(event) {
   profileName.textContent = inputName.value;
   profileProfession.textContent = inputAboutme.value;
   closePopup(profileForm);
+<<<<<<< HEAD
   event.target.reset();
 }
+=======
+  event
+    .target
+    .reset();
+}
+
+document
+  .querySelector("#addplaceform")
+  .addEventListener("submit", submitAddPlaceForm);
+document
+  .querySelector("#profileform")
+  .addEventListener("submit", submitProfileForm);
+
+
+renderArrayElements(galleryCardsInputs);
+addListeners();
+enableValidation(validationParams); 
+
+export {
+  addGalleryElementContent,
+  resetValidityOnStart,
+  disableSubmitButtonOnStart,
+}
+>>>>>>> develop
