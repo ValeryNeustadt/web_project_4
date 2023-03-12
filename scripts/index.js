@@ -1,21 +1,22 @@
 import {
-  Card
+  Card,
 } from "./Card.js";
 
 import {     
-  addListeners, 
-  profileForm, 
-  addPlaceForm,
+  openPopup,
   closePopup,
-  profileName,
-  inputName,
-  profileProfession,
-  inputAboutme
 } from "./utils.js";
 
 import { 
-  FormValidation 
+  FormValidation,
 } from "./FormValidator.js";
+
+const profileName = document.querySelector(".profile__name");
+const profileProfession = document.querySelector(".profile__profession")
+const profileForm = document.querySelector("#popup__profileform");
+const inputName = document.querySelector("#profileform__name");
+const inputAboutme = document.querySelector("#profileform__about-me");
+const addPlaceForm = document.querySelector("#popup__addplaceform");
 
 const validationParams = {
   formSelector: ".popup__form",
@@ -55,28 +56,8 @@ const galleryCardsInputs = [
   },
 ];
 
-const enableValidation = (validationParams) => {
-  const Validation = new FormValidation(validationParams);
-  Validation.enableValidation();  
-}
-
-const disableSubmitButton = (validationParams) => {
-const  disableSubmit = new FormValidation(validationParams);
-disableSubmit.disableSubmitButton();
-}
-
-function disableSubmitButtonOnStart() {
-  disableSubmitButton(validationParams);
-}  
-
-const resetValidity = (validationParams) => {
-  const  resetValidity = new FormValidation(validationParams);
-  resetValidity.resetValidity();
-}
-
-function resetValidityOnStart () {
-resetValidity(validationParams); 
-}
+const addPlaceFormValidator = new FormValidation(validationParams, addPlaceForm);
+const profileFormValidator = new FormValidation(validationParams, profileForm);
 
 function addGalleryElementContent() {
   const newObjectGallery = new Object();
@@ -125,20 +106,56 @@ function submitProfileForm(event) {
     .reset();
 }
 
-document
-  .querySelector("#addplaceform")
-  .addEventListener("submit", submitAddPlaceForm);
-document
-  .querySelector("#profileform")
-  .addEventListener("submit", submitProfileForm);
+function addListeners() {
+  const popups = document.querySelectorAll('.popup')
+  popups.forEach((popup) => {
+      popup.addEventListener('mousedown', (evt) => {
+          if (evt
+                .target
+                .classList
+                .contains('popup_opened')
+              ) {
+            closePopup(popup)
+          }
+          if (evt
+                .target
+                .classList
+                .contains('popup__close-button')
+              ) {
+            closePopup(popup)
+          }
+      })
+  })
+  document
+    .querySelector(".profile__edit-button")
+    .addEventListener("click", openProfileForm);
+  document
+    .querySelector(".profile__add-button")
+    .addEventListener("click", openAddPlaceForm);
+  document
+    .querySelector("#addplaceform")
+    .addEventListener("submit", submitAddPlaceForm);
+  document
+    .querySelector("#profileform")
+    .addEventListener("submit", submitProfileForm);
+}
+  
+function openProfileForm() {
+  profileFormValidator.enableValidation();
+  openPopup(profileForm);
+  inputName.value = profileName.textContent;
+  inputAboutme.value = profileProfession.textContent;
+  profileFormValidator.disableSubmitButton();
+  profileFormValidator.resetValidity();
+}
 
+function openAddPlaceForm() {
+  addPlaceFormValidator.enableValidation();
+  openPopup(addPlaceForm);
+  addPlaceFormValidator.disableSubmitButton();
+  addPlaceFormValidator.resetValidity();
+}
 
 renderArrayElements(galleryCardsInputs);
 addListeners();
-enableValidation(validationParams); 
 
-export {
-  addGalleryElementContent,
-  resetValidityOnStart,
-  disableSubmitButtonOnStart,
-}

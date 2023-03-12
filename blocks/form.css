@@ -10,7 +10,6 @@
     flex-direction: column;
     border: 0;
     padding: 54px 0 13px 0;
-    /* gap: 30px; */
     margin: 0;
 }
 
@@ -59,7 +58,13 @@
     border: 1px solid rgba(0, 0, 0, 0.2);
     background-color: rgba(255, 255, 255, 1);
 
+
 }
+
+.form__button_disabled:hover{
+    cursor: default;
+}
+
 
 
 .form__input_type_error {

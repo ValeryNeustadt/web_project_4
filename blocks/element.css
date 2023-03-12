@@ -15,10 +15,7 @@
     margin: 0;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-}
-
-.element__photo:hover{
-    opacity: 50%;
+    cursor: pointer;
 }
 
 .element__header {
