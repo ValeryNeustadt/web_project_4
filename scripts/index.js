@@ -145,14 +145,14 @@ function openProfileForm() {
   openPopup(profileForm);
   inputName.value = profileName.textContent;
   inputAboutme.value = profileProfession.textContent;
-  profileFormValidator.disableSubmitButton();
+  profileFormValidator.toggleButtonStateOnStart();
   profileFormValidator.resetValidity();
 }
 
 function openAddPlaceForm() {
   addPlaceFormValidator.enableValidation();
   openPopup(addPlaceForm);
-  addPlaceFormValidator.disableSubmitButton();
+  addPlaceFormValidator.toggleButtonStateOnStart();
   addPlaceFormValidator.resetValidity();
 }
 
