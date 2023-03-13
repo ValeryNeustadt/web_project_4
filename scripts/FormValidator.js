@@ -32,7 +32,7 @@ export class FormValidation {
     errorMessage.classList.remove(this._errorClass);
   }
 
-  _toggleButtonState() {
+  toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._buttonElement.classList.add(this._inactiveButtonClass);
       this._buttonElement.disabled = true;
@@ -58,16 +58,9 @@ export class FormValidation {
   resetValidity() {
     this._inputs.forEach((inputItem) => {
       if (inputItem.validity.valid) {
-        // Sorry, I know I can't do this, but my idea was
-        // that if the user closes the "New Location" popup with some incorrect information,
-        // the error information will appear in the popup when he opens it again.
         this._hideError(inputItem);
       }
     });
-  }
-
-  toggleButtonStateOnStart() {
-    this._toggleButtonState();
   }
 
   _toggleInputError(inputItem) {
@@ -81,7 +74,7 @@ export class FormValidation {
   _setEventListener() {
     this._inputs.forEach((inputItem) => {
       inputItem.addEventListener("input", () => {
-        this._toggleButtonState();
+        this.toggleButtonState();
         this._toggleInputError(inputItem);
       });
     });
