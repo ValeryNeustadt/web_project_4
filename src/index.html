@@ -8,8 +8,8 @@
   <meta name="author" content="Valery Neustadt">
   <meta name="keywords" content="HTML, CSS">
   <meta name="description" content="Pructicum Student project">
-  <link rel="stylesheet" href="./pages/index.css">
-  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+
+  <link rel="icon" type="image/x-icon" href="<%=require('./images/favicon.ico')%>">
   <title>Around The U.S.</title>
 </head>
 
@@ -71,12 +71,13 @@
   <div class="page">
 
     <header class="header">
-      <img src="./images/Logo.svg" alt="Around The U.S. Logo" class="header__logo">
+      <img src="<%=require('./images/Logo.svg')%>" alt="Around The U.S. Logo" class="header__logo">
     </header>
 
     <main class="content">
       <section class="profile">
-        <img src="./images/jacques-cousteau-avatar.png" alt="Photo of Jacques Cousteau" class="profile__avatar">
+        <img src="<%=require('./images/jacques-cousteau-avatar.png')%>" alt="Photo of Jacques Cousteau"
+          class="profile__avatar">
         <div class="profile__info">
           <h1 class="profile__name-title">
             <span class="profile__name">Jacques Cousteau</span>
@@ -114,7 +115,7 @@
 
   </template>
 
-  <script type="module" src="./pages/index.js"></script>
+
 
 </body>
 
