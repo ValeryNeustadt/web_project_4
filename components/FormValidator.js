@@ -57,9 +57,9 @@ export class FormValidation {
 
   resetValidity() {
     this._inputs.forEach((inputItem) => {
-      if (inputItem.validity.valid) {
+      //if (inputItem.validity.valid) {
         this._hideError(inputItem);
-      }
+      //}
     });
   }
 
