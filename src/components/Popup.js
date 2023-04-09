@@ -6,13 +6,13 @@ export default class Popup {
   open() {
     this._popupSelector.classList.add("popup_opened");
     document.addEventListener("keydown", this._handleEscClose);
-    this.setEventListeners();
+    // this.setEventListeners();
   }
 
   close() {
     this._popupSelector.classList.remove("popup_opened");
     document.removeEventListener("keydown", this._handleEscClose);
-    this.removeEventListeners();
+    // this._removeEventListeners();
   }
 
   _handleEscClose = (evt) => {
@@ -31,15 +31,15 @@ export default class Popup {
       }
     });
   }
-  removeEventListeners() {
-    console.log("Hello!");
-    this._popupSelector.removeEventListener("mousedown", (evt) => {
-      if (
-        evt.target.classList.contains("popup_opened") ||
-        evt.target.classList.contains("popup__close-button")
-      ) {
-        this.close();
-      }
-    });
-  }
+  // _removeEventListeners() {
+  //   console.log("hall0");
+  //   this._popupSelector.removeEventListener("mousedown", (evt) => {
+  //     if (
+  //       evt.target.classList.contains("popup_opened") ||
+  //       evt.target.classList.contains("popup__close-button")
+  //     ) {
+  //       this.close();
+  //     }
+  //   });
+  // }
 }

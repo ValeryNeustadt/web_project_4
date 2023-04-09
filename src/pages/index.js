@@ -56,6 +56,8 @@ const cardSection = new Section(
   cardListSection
 );
 
+const userInfo = new UserInfo(profileName, profileProfession);
+
 const addPlacePopup = new PopupWithForm(addPlaceForm, (data) => {
   const cardData = {
     name: data["title"],
@@ -70,46 +72,41 @@ const addPlacePopup = new PopupWithForm(addPlaceForm, (data) => {
   //     popupWithImage.openPopup();
   // });
   // const cardElement = card.generateCard();
+
   const cardElement = renderCard(cardData);
   cardSection.prependItem(cardElement);
   addPlacePopup.close();
 });
 
-const userInfo = new UserInfo(profileName, profileProfession);
-
 const profilePopup = new PopupWithForm(profileForm, (data) => {
   const inputName = data["name"];
-  const inputAboutme = data["about-me"];
+  const inputAboutMe = data["about-me"];
+  console.log(inputName);
+  userInfo.setUserInfo(inputName, inputAboutMe);
   profilePopup.close();
   //const userInfo = new UserInfo (inputName, inputAboutme);
-  userInfo.setUserInfo(inputName, inputAboutme);
 });
-
-function addFunctionalityToProfileAddButton() {
-  addPlacePopup.open();
-  addPlaceFormValidator.toggleButtonState();
-  addPlaceFormValidator.resetValidity();
-}
-
-function addFunctionalityToProfileEditButton() {
-  const userData = userInfo.getUserInfo();
-  inputName.value = userData.profileName;
-  inputAboutme.value = userData.profileProfession;
-  profilePopup.open();
-  profileFormValidator.toggleButtonState();
-  profileFormValidator.resetValidity();
-}
 
 cardSection.renderItems();
 addPlaceFormValidator.enableValidation();
 profileFormValidator.enableValidation();
-//addPlacePopup.setEventListeners();
-//profilePopup.setEventListeners();
+addPlacePopup.setEventListeners();
+profilePopup.setEventListeners();
 
-profileAddButton.addEventListener("click", () => {
-  addFunctionalityToProfileAddButton();
-});
+function handleAddCardButtonClick() {
+  addPlaceFormValidator.toggleButtonState();
+  addPlaceFormValidator.resetValidity();
+  addPlacePopup.open();
+}
 
-profileEditButton.addEventListener("click", () => {
-  addFunctionalityToProfileEditButton();
-});
+function handleEditProfileButtonClick() {
+  const userData = userInfo.getUserInfo();
+  inputName.value = userData.profileName;
+  inputAboutme.value = userData.profileProfession;
+  profileFormValidator.toggleButtonState();
+  profileFormValidator.resetValidity();
+  profilePopup.open();
+}
+
+profileAddButton.addEventListener("click", handleAddCardButtonClick);
+profileEditButton.addEventListener("click", handleEditProfileButtonClick);

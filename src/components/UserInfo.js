@@ -1,22 +1,23 @@
 export class UserInfo {
-    constructor(profileName, profileProfession) {
-        this._inputName = profileName;
-        this._inputAboutme = profileProfession;
-        this._profileName = document.querySelector(".profile__name");
-        this._profileProfession = document.querySelector(".profile__profession");
-    }
-  
-    getUserInfo() {
-        this._userValues = {};   
-        this._userValues = {
-            profileName: this._inputName.textContent,
-            profileProfession: this._inputAboutme.textContent
-        };  
-       return this._userValues;
-    }
+  constructor(profileName, profileProfession) {
+    this._profileName = profileName;
+    this._profileProfession = profileProfession;
+    // this._profileName = document.querySelector(".profile__name");
+    // this._profileProfession = document.querySelector(".profile__profession");
+  }
 
-    setUserInfo(inputName, inputAboutme) {
+  getUserInfo() {
+    const userValues = {
+      // userValues = {
+      profileName: this._profileName.textContent,
+      profileProfession: this._profileProfession.textContent,
+    };
+    //console.log(userValues);
+    return userValues;
+  }
+
+  setUserInfo(inputName, inputAboutMe) {
     this._profileName.textContent = inputName;
-    this._profileProfession.textContent = inputAboutme;
-    }
+    this._profileProfession.textContent = inputAboutMe;
+  }
 }

@@ -10,8 +10,7 @@ export class FormValidation {
     this._buttonElement = this._formElement.querySelector(
       this._submitButtonSelector
     );
-    this._inputs = this._formElement.querySelectorAll(this._inputSelector); //this variable need for  resetValidity() method and for this._inputsArray variable
-    this._inputsArray = Array.from(this._inputs);
+    //this._inputs = this._formElement.querySelectorAll(this._inputSelector);
   }
 
   _showError(inputItem) {
@@ -43,7 +42,8 @@ export class FormValidation {
   }
 
   _hasInvalidInput() {
-    return this._inputsArray.some((input) => {
+    const inputsArray = Array.from(this._inputs);
+    return inputsArray.some((input) => {
       return !input.validity.valid;
     });
   }
@@ -72,6 +72,7 @@ export class FormValidation {
   }
 
   _setEventListener() {
+    this._inputs = this._formElement.querySelectorAll(this._inputSelector);
     this._inputs.forEach((inputItem) => {
       inputItem.addEventListener("input", () => {
         this.toggleButtonState();
