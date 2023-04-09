@@ -10,7 +10,7 @@ export class FormValidation {
     this._buttonElement = this._formElement.querySelector(
       this._submitButtonSelector
     );
-    this._inputs = this._formElement.querySelectorAll(this._inputSelector);
+    this._inputs = this._formElement.querySelectorAll(this._inputSelector); //this variable need for  resetValidity() method and for this._inputsArray variable
     this._inputsArray = Array.from(this._inputs);
   }
 
@@ -58,7 +58,7 @@ export class FormValidation {
   resetValidity() {
     this._inputs.forEach((inputItem) => {
       //if (inputItem.validity.valid) {
-        this._hideError(inputItem);
+      this._hideError(inputItem);
       //}
     });
   }

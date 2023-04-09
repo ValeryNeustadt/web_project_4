@@ -7,6 +7,8 @@ import { UserInfo } from "../components/UserInfo.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 
 import {
+  profileAddButton,
+  profileEditButton,
   profileName,
   profileProfession,
   profileForm,
@@ -26,16 +28,19 @@ const addPlaceFormValidator = new FormValidation(
 
 const profileFormValidator = new FormValidation(validationParams, profileForm);
 
-function cardRender(data) {
+const popupWithImage = new PopupWithImage(imagePreview);
+popupWithImage.setEventListeners();
+
+function renderCard(data) {
   const card = new Card(data, (imageData) => {
-    const popupWithImage = new PopupWithImage(imagePreview, imageData);
-    popupWithImage.openPopup();
+    // const popupWithImage = new PopupWithImage(imagePreview, imageData);
+    popupWithImage.open(imageData);
   });
   const cardElement = card.generateCard();
   return cardElement;
 }
 
-const renderArrayElements = new Section(
+const cardSection = new Section(
   {
     data: galleryCardsInputs,
     renderer: (data) => {
@@ -44,56 +49,67 @@ const renderArrayElements = new Section(
       //   popupWithImage.openPopup();
       // });
       //   const cardElement = card.generateCard();
-      const cardElement = cardRender(data);
-      renderArrayElements.setItemAppend(cardElement);
+      const cardElement = renderCard(data);
+      cardSection.appendItem(cardElement);
     },
   },
   cardListSection
 );
 
-const submitAddPlaceForm = new PopupWithForm(addPlaceForm, (data) => {
-  data["name"] = data["title"];
-  data["link"] = data["image-link"];
-  delete data["title"];
-  delete data["image-link"];
+const addPlacePopup = new PopupWithForm(addPlaceForm, (data) => {
+  const cardData = {
+    name: data["title"],
+    link: data["image-link"],
+  };
+  // data["name"] = data["title"];
+  // data["link"] = data["image-link"];
+  // delete data["title"];
+  // delete data["image-link"];
   // const card = new Card(data, (imageData) => {
   //   const popupWithImage = new PopupWithImage (imagePreview, imageData);
   //     popupWithImage.openPopup();
   // });
   // const cardElement = card.generateCard();
-  const cardElement = cardRender(data);
-  renderArrayElements.setItemPrepend(cardElement);
+  const cardElement = renderCard(cardData);
+  cardSection.prependItem(cardElement);
+  addPlacePopup.close();
 });
 
 const userInfo = new UserInfo(profileName, profileProfession);
 
-const submitProfileForm = new PopupWithForm(profileForm, (data) => {
+const profilePopup = new PopupWithForm(profileForm, (data) => {
   const inputName = data["name"];
   const inputAboutme = data["about-me"];
+  profilePopup.close();
   //const userInfo = new UserInfo (inputName, inputAboutme);
   userInfo.setUserInfo(inputName, inputAboutme);
 });
 
-renderArrayElements.renderItems();
-addPlaceFormValidator.enableValidation();
-profileFormValidator.enableValidation();
-submitAddPlaceForm.setEventListeners();
-submitProfileForm.setEventListeners();
-
-document.querySelector(".profile__add-button").addEventListener("click", () => {
-  submitAddPlaceForm.open();
+function addFunctionalityToProfileAddButton() {
+  addPlacePopup.open();
   addPlaceFormValidator.toggleButtonState();
   addPlaceFormValidator.resetValidity();
+}
+
+function addFunctionalityToProfileEditButton() {
+  const userData = userInfo.getUserInfo();
+  inputName.value = userData.profileName;
+  inputAboutme.value = userData.profileProfession;
+  profilePopup.open();
+  profileFormValidator.toggleButtonState();
+  profileFormValidator.resetValidity();
+}
+
+cardSection.renderItems();
+addPlaceFormValidator.enableValidation();
+profileFormValidator.enableValidation();
+//addPlacePopup.setEventListeners();
+//profilePopup.setEventListeners();
+
+profileAddButton.addEventListener("click", () => {
+  addFunctionalityToProfileAddButton();
 });
 
-document
-  .querySelector(".profile__edit-button")
-  .addEventListener("click", () => {
-    //const userInfo = new UserInfo (profileName, profileProfession);
-    const getUserInfo = userInfo.getUserInfo();
-    inputName.value = getUserInfo.profileName;
-    inputAboutme.value = getUserInfo.profileProfession;
-    submitProfileForm.open();
-    profileFormValidator.toggleButtonState();
-    profileFormValidator.resetValidity();
-  });
+profileEditButton.addEventListener("click", () => {
+  addFunctionalityToProfileEditButton();
+});
