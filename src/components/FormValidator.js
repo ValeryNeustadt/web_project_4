@@ -10,7 +10,6 @@ export class FormValidation {
     this._buttonElement = this._formElement.querySelector(
       this._submitButtonSelector
     );
-    //this._inputs = this._formElement.querySelectorAll(this._inputSelector);
   }
 
   _showError(inputItem) {
@@ -42,7 +41,6 @@ export class FormValidation {
   }
 
   _hasInvalidInput() {
-    //const inputsArray = Array.from(this._inputs);
     return this._inputs.some((input) => {
       return !input.validity.valid;
     });
@@ -57,9 +55,7 @@ export class FormValidation {
 
   resetValidity() {
     this._inputs.forEach((inputItem) => {
-      //if (inputItem.validity.valid) {
       this._hideError(inputItem);
-      //}
     });
   }
 

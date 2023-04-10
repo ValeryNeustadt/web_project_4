@@ -2,8 +2,6 @@ import Popup from "../components/Popup.js";
 export class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-    // this.name = data.name;
-    // this.link = data.link;
     this._popupImageContent = this._popupSelector.querySelector(
       ".popup__image-content"
     );
@@ -22,8 +20,6 @@ export class PopupWithImage extends Popup {
     this.name = data.name;
     this.link = data.link;
     super.open();
-
     this._rendrePopupImagePreview();
-    //super.setEventListeners();
   }
 }

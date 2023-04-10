@@ -33,7 +33,6 @@ popupWithImage.setEventListeners();
 
 function renderCard(data) {
   const card = new Card(data, (imageData) => {
-    // const popupWithImage = new PopupWithImage(imagePreview, imageData);
     popupWithImage.open(imageData);
   });
   const cardElement = card.generateCard();
@@ -44,11 +43,6 @@ const cardSection = new Section(
   {
     data: galleryCardsInputs,
     renderer: (data) => {
-      //   const card = new Card(data, (imageData) => {
-      //   const popupWithImage = new PopupWithImage (imagePreview, imageData);
-      //   popupWithImage.openPopup();
-      // });
-      //   const cardElement = card.generateCard();
       const cardElement = renderCard(data);
       cardSection.appendItem(cardElement);
     },
@@ -63,16 +57,6 @@ const addPlacePopup = new PopupWithForm(addPlaceForm, (data) => {
     name: data["title"],
     link: data["image-link"],
   };
-  // data["name"] = data["title"];
-  // data["link"] = data["image-link"];
-  // delete data["title"];
-  // delete data["image-link"];
-  // const card = new Card(data, (imageData) => {
-  //   const popupWithImage = new PopupWithImage (imagePreview, imageData);
-  //     popupWithImage.openPopup();
-  // });
-  // const cardElement = card.generateCard();
-
   const cardElement = renderCard(cardData);
   cardSection.prependItem(cardElement);
   addPlacePopup.close();
@@ -81,10 +65,8 @@ const addPlacePopup = new PopupWithForm(addPlaceForm, (data) => {
 const profilePopup = new PopupWithForm(profileForm, (data) => {
   const inputName = data["name"];
   const inputAboutMe = data["about-me"];
-  console.log(inputName);
   userInfo.setUserInfo(inputName, inputAboutMe);
   profilePopup.close();
-  //const userInfo = new UserInfo (inputName, inputAboutme);
 });
 
 cardSection.renderItems();
