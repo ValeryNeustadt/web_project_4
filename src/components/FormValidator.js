@@ -42,8 +42,8 @@ export class FormValidation {
   }
 
   _hasInvalidInput() {
-    const inputsArray = Array.from(this._inputs);
-    return inputsArray.some((input) => {
+    //const inputsArray = Array.from(this._inputs);
+    return this._inputs.some((input) => {
       return !input.validity.valid;
     });
   }
@@ -72,7 +72,9 @@ export class FormValidation {
   }
 
   _setEventListener() {
-    this._inputs = this._formElement.querySelectorAll(this._inputSelector);
+    this._inputs = Array.from(
+      this._formElement.querySelectorAll(this._inputSelector)
+    );
     this._inputs.forEach((inputItem) => {
       inputItem.addEventListener("input", () => {
         this.toggleButtonState();

@@ -3,8 +3,10 @@ export const profileEditButton = document.querySelector(
   ".profile__edit-button"
 );
 
-export const profileName = document.querySelector(".profile__name");
-export const profileProfession = document.querySelector(".profile__profession");
+//export const profileName = document.querySelector(".profile__name");
+export const profileName = ".profile__name";
+//export const profileProfession = document.querySelector(".profile__profession");
+export const profileProfession = ".profile__profession";
 
 export const profileForm = document.querySelector("#popup__profileform");
 export const addPlaceForm = document.querySelector("#popup__addplaceform");
