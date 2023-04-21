@@ -27,5 +27,6 @@ export class UserInfo {
 
   setUserImage(imageLink) {
     this._image.src = imageLink;
+    this._image.alt = `Photo of ${this._profileName.textContent}`;
   }
 }
