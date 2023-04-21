@@ -3,11 +3,18 @@ export const profileEditButton = document.querySelector(
   ".profile__edit-button"
 );
 
+export const avatarEditButton = document.querySelector(".profile__avatar");
+
+export const profileInfoSelector = ".profile__info";
+export const userImageSelector = ".profile__avatar-image";
 export const profileName = ".profile__name";
 export const profileProfession = ".profile__profession";
 
 export const profileForm = document.querySelector("#popup__profileform");
 export const addPlaceForm = document.querySelector("#popup__addplaceform");
+export const avatarForm = document.querySelector("#popup__updateavatar");
+
+export const confirmPopup = document.querySelector("#popup__confirm");
 
 export const inputName = document.querySelector("#profileform__name");
 export const inputAboutme = document.querySelector("#profileform__about-me");

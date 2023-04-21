@@ -1,82 +1,104 @@
 .element {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    position: relative;
-    margin: 0;
-    background-color: #FFFFFF;
-    border-radius: 10px;
-    justify-self: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  position: relative;
+  margin: 0;
+  background-color: #ffffff;
+  border-radius: 10px;
+  justify-self: center;
 }
 
 .element__photo {
-    width: 282px;
-    height: 282px;
-    margin: 0;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    cursor: pointer;
+  width: 282px;
+  height: 282px;
+  margin: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  cursor: pointer;
 }
 
 .element__header {
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
-    align-items: center;
-    padding: 25px 20px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  align-items: center;
+  height: 79px;
+  width: auto;
+  padding: 0 20px;
 }
 
 .element__text {
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 900;
-    font-size: 24px;
-    line-height: 29.05px;
-    color: #000000;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    max-width: 215px;
-    margin: 0;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29.05px;
+  color: #000000;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 215px;
+  margin: 0;
 }
+
 .element__button-like {
-    width: 21px;
-    height: 18px;
-    margin: 0;
-    border: 0;
-    background: none;
-    background-image: url(../images/like-icon.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 18px 21px;
-    cursor: pointer;
+  width: 21px;
+  height: 18px;
+  margin: 0;
+  border: 0;
+  background: none;
+  background-image: url(../images/like-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px 21px;
+  cursor: pointer;
+}
+.element__number-like {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
+  margin: 0;
+  text-align: center;
+  /* text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 373px; */
 }
 
 .element__button-like_active {
-    background-image: url(../images/like-icon-active.svg);
+  background-image: url(../images/like-icon-active.svg);
 }
 
 .element__trash-button {
-    position: absolute;
-    right: 15px;
-    top: 18px;
-    width: 18px;
-    height: 19px;
-    margin: 0;
-    border: 0;
-    background: none;
-    background-image: url(../images/Trash.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 18px 19px;
-    cursor: pointer;
-    z-index: 1;
+  position: absolute;
+  right: 15px;
+  top: 18px;
+  width: 18px;
+  height: 19px;
+  margin: 0;
+  border: 0;
+  background: none;
+  background-image: url(../images/Trash.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px 19px;
+  visibility: hidden;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.element__trash-button_visible {
+  visibility: visible;
 }
 
 .element__button-like:hover {
-    opacity: 50%;
+  opacity: 50%;
 }
 
 .element__trash-button:hover {
-    opacity: 60%;
+  opacity: 60%;
 }
