@@ -7,7 +7,7 @@ export class UserInfo {
   ) {
     this._profileName = document.querySelector(profileName);
     this._profileProfession = document.querySelector(profileProfession);
-    this._id = document.querySelector(profileInfoSelector);
+    //this._id = document.querySelector(profileInfoSelector);
     this._image = document.querySelector(userImageSelector);
   }
 
@@ -22,7 +22,7 @@ export class UserInfo {
   setUserInfo(inputName, inputAboutMe, id) {
     this._profileName.textContent = inputName;
     this._profileProfession.textContent = inputAboutMe;
-    this._id.id = id;
+    //this._id.id = id;
   }
 
   setUserImage(imageLink) {

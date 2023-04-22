@@ -13,11 +13,16 @@ export class PopupConfirmDelete extends Popup {
   setEventListeners() {
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this.renderLoading(true);
+      //this.renderLoading(true);
       this._handleFormSubmit();
-      super.close();
+      //super.close();
     });
     super.setEventListeners();
+  }
+
+  close() {
+    super.close();
+    this._form.reset();
   }
 
   renderLoading(isLoading) {

@@ -1,5 +1,12 @@
 import "../pages/index.css";
 
+//The like button should not move to top when the text appears. Please take a look at the design
+//I'm sorry, but I don't understand this point.
+//I couldn't find information about what happens when the number of likes is zero.
+//In the previous sprint, the "Like" button was on the same level as the name of the place.
+//For me, this means that when a number changes from zero to one,
+//it should move up and free up space for the counter.
+
 import { Card } from "../components/Card.js";
 import { PopupConfirmDelete } from "../components/PopupConfirmDelete.js";
 import { FormValidation } from "../components/FormValidator.js";
@@ -7,7 +14,7 @@ import { Section } from "../components/Section.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
-import Api from "../components/Api.js";
+import Api from "../utils/Api.js";
 
 import {
   profileAddButton,
@@ -48,7 +55,7 @@ popupWithImage.setEventListeners();
 const confirmDeletePopup = new PopupConfirmDelete(confirmPopup);
 confirmDeletePopup.setEventListeners();
 
-function renderCard(data, userData) {
+function renderCard(data, userId) {
   const card = new Card(
     data,
     (imageData) => {
@@ -60,6 +67,7 @@ function renderCard(data, userData) {
         api
           .deleteCard(cardId)
           .then((res) => {
+            confirmDeletePopup.close();
             card.removeElement();
           })
           .catch((err) => {
@@ -68,6 +76,8 @@ function renderCard(data, userData) {
           .finally(() => {
             confirmDeletePopup.renderLoading(false);
           });
+
+        confirmDeletePopup.renderLoading(true);
       });
     },
     (cardId) => {
@@ -76,7 +86,7 @@ function renderCard(data, userData) {
         api
           .deleteLikes(cardId)
           .then((res) => {
-            card.toggleLikeButton(res.likes);
+            card.setLikes(res.likes);
           })
           .catch((err) => {
             console.log(`Error: ${err}`);
@@ -85,14 +95,14 @@ function renderCard(data, userData) {
         api
           .addLikes(cardId)
           .then((res) => {
-            card.toggleLikeButton(res.likes);
+            card.setLikes(res.likes);
           })
           .catch((err) => {
             console.log(`Error: ${err}`);
           });
       }
     },
-    userData
+    userId
   );
   const cardElement = card.generateCard();
   return cardElement;
@@ -115,7 +125,7 @@ Promise.all([api.getInitialCards(), api.getUserData()])
       {
         data: cards,
         renderer: (data) => {
-          const cardElement = renderCard(data, userData);
+          const cardElement = renderCard(data, userData._id);
           cardSection.appendItem(cardElement);
         },
       },
@@ -135,17 +145,18 @@ const addPlacePopup = new PopupWithForm(addPlaceForm, (data) => {
   api
     .addCard(cardData.name, cardData.link)
     .then((post) => {
-      const cardElement = renderCard(post, post.owner);
+      const cardElement = renderCard(post, post.owner._id);
       cardSection.prependItem(cardElement);
       addPlacePopup.close();
     })
     .catch((err) => {
       console.log(`Error: ${err}`);
-      addPlacePopup.renderLoading(false);
+      // addPlacePopup.renderLoading(false);
     })
     .finally(() => {
       addPlacePopup.renderLoading(false);
     });
+  addPlacePopup.renderLoading(true);
 });
 
 const profilePopup = new PopupWithForm(profileForm, (data) => {
@@ -154,17 +165,17 @@ const profilePopup = new PopupWithForm(profileForm, (data) => {
   api
     .setUserData(inputName, inputAboutMe)
     .then((post) => {
-      console.log(post);
       userInfo.setUserInfo(post.name, post.about, post._id);
       profilePopup.close();
     })
     .catch((err) => {
       console.log(`Error: ${err}`);
-      profilePopup.renderLoading(false);
+      // profilePopup.renderLoading(false);
     })
     .finally(() => {
       profilePopup.renderLoading(false);
     });
+  profilePopup.renderLoading(true);
 });
 
 const updateAvatarPopup = new PopupWithForm(avatarForm, (data) => {
@@ -177,11 +188,12 @@ const updateAvatarPopup = new PopupWithForm(avatarForm, (data) => {
     })
     .catch((err) => {
       console.log(`Error: ${err}`);
-      updateAvatarPopup.renderLoading(false);
+      // updateAvatarPopup.renderLoading(false);
     })
     .finally(() => {
       updateAvatarPopup.renderLoading(false);
     });
+  updateAvatarPopup.renderLoading(true);
 });
 
 avatarFormValidator.enableValidation();
