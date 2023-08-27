@@ -121,6 +121,7 @@ Promise.all([api.getInitialCards(), api.getUserData()])
   .then(([cards, userData]) => {
     userInfo.setUserInfo(userData.name, userData.about, userData._id);
     userInfo.setUserImage(userData.avatar);
+    console.log(cards);
     cardSection = new Section(
       {
         data: cards,
